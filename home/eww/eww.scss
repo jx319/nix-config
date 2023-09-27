@@ -1,0 +1,40 @@
+* { 
+	border-radius: 10;
+	font-size: 16;
+}
+
+window {
+	border-radius: 0;
+}
+box * {
+	border-radius: 30;
+	
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 2;
+	margin-bottom: 2;
+	
+	padding-left: 5;
+	padding-right: 5;
+	padding-top: 1;
+	padding-bottom: 1;
+	
+	font-family: JetBrainsMono Nerd Font Propo;
+	font-size: 16;
+}
+.powerButton {
+	color: #f38ba8;
+	padding-right: 6;
+	padding-left: 7;
+}
+.activeworkspace {
+	color: #a6e3a1;
+	background-color: #313244;
+}
+.activewindow {
+	background-color: #30303e;
+	margin-top: 5px;
+	margin-bottom: 5px;	
+}
+
+

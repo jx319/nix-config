@@ -1,0 +1,78 @@
+(defvar eww "eww -c $HOME/nix-config/home/eww")
+
+(defpoll time :interval "0.1s"
+              :initial "initial-value"  ; optional, defaults to poll at startup
+              :run-while time-visible   ; optional, defaults to 'true'
+  `date +%H:%M`)
+(deflisten activewindow :initial "..."
+                       "~/nix-config/home/eww/bar/get-window-title")
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+			                         :width "100%"
+                               :height "30px"
+                               :anchor "top center")
+           :stacking "fg"
+	         :exclusive true
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  		(container
+          (workspaces (children :nth 0))
+          (label :text {activewindow == "null" ? "..." : activewindow} :class "activewindow" (children :nth 1))
+          (buttonRowRight (children :nth 2))
+      )
+)
+      
+(defwidget container []
+  (box :class "container"
+    (children)))
+  
+
+(defpoll current-brightness :interval "0.5s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
+(defpoll current-volume :interval "0.5s" "pamixer --get-volume" )
+(defpoll muted :interval "0.5s" "pamixer --get-mute")
+
+(defwidget buttonRowRight []
+  (box  :orientation "horizontal"
+        :halign "end"
+        :width "25%"
+        :hexpand true
+        :class "buttonRowRight"
+        (box :class "container"
+                (label :text "󰃟 ${current-brightness}")
+                )
+        (box :class "container"
+                (label :text {muted ? "󰖁 ${current-volume}" : "󰕾 ${current-volume}"})
+                )
+        (box :class "container"
+                (label :class "clock"
+                       :text time))
+        (box :class "container"
+                (button :onclick "wlogout & disown" 
+                        :class "powerButton"
+                        "")
+                )))
+
+(deflisten activeworkspace "#!/usr/bin/env bash
+
+                            hyprctl monitors -j | jq '.[] | select(.focused) | .activeWorkspace.id'
+
+                            socat -u UNIX-CONNECT:/tmp/hypr/$HYPRLAND_INSTANCE_SIGNATURE/.socket2.sock - |
+                              stdbuf -o0 awk -F '>>|,' -e '/^workspace>>/ {print $2}' -e '/^focusedmon>>/ {print $3}'")
+(defwidget workspaces []
+  (box :class "workspaces"
+       :orientation "h"
+       :space-evenly true
+       :halign "start"
+       :spacing 10
+    (button :onclick "hyprctl dispatch workspace 1" :class {activeworkspace == "1" ? "activeworkspace" : ""} 1)
+    (button :onclick "hyprctl dispatch workspace 2" :class {activeworkspace == "2" ? "activeworkspace" : ""} 2)
+    (button :onclick "hyprctl dispatch workspace 3" :class {activeworkspace == "3" ? "activeworkspace" : ""} 3)
+    (button :onclick "hyprctl dispatch workspace 4" :class {activeworkspace == "4" ? "activeworkspace" : ""} 4)
+    (button :onclick "hyprctl dispatch workspace 5" :class {activeworkspace == "5" ? "activeworkspace" : ""} 5)
+    (button :onclick "hyprctl dispatch workspace 6" :class {activeworkspace == "6" ? "activeworkspace" : ""} 6)
+    (button :onclick "hyprctl dispatch workspace 7" :class {activeworkspace == "7" ? "activeworkspace" : ""} 7)
+    (button :onclick "hyprctl dispatch workspace 8" :class {activeworkspace == "8" ? "activeworkspace" : ""} 8)
+    (button :onclick "hyprctl dispatch workspace 9" :class {activeworkspace == "9" ? "activeworkspace" : ""} 9)))
