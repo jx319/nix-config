@@ -1,6 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
   wayland.windowManager.hyprland = {
   	enable = true;
+		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
 	extraConfig = ''
 		# See https://wiki.hyprland.org/Configuring/Monitors/
