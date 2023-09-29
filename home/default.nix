@@ -37,7 +37,7 @@
   gtk = {
   	enable = true;
 	  theme = {
-    		name = "Catppuccin-Mocha-Standard-Green-dark";
+    		name = "Catppuccin-Mocha-Standard-Green-Dark";
 		    package = pkgs.catppuccin-gtk.override {
 			    accents = [ "green" ];
           size = "standard";

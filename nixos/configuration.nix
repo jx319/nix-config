@@ -62,7 +62,6 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirt" ];
     packages = with pkgs; [
-      eww-wayland
       tree
       ranger
       ktorrent
