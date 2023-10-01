@@ -2,6 +2,7 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
 
+    ./swayosd
     ./git
     ./hyprland
     ./eww
