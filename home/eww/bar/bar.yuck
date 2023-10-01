@@ -1,11 +1,9 @@
-(defvar eww "eww -c $HOME/nix-config/home/eww")
-
 (defpoll time :interval "0.1s"
               :initial "initial-value"  ; optional, defaults to poll at startup
               :run-while time-visible   ; optional, defaults to 'true'
   `date +%H:%M`)
 (deflisten activewindow :initial "..."
-                       "~/nix-config/home/eww/bar/get-window-title")
+                       "~/.config/eww/bar/get-window-title")
 (defwindow bar
            :monitor 0
            :geometry (geometry :x "0%"
@@ -33,6 +31,7 @@
 (defpoll current-brightness :interval "0.5s" "brightnessctl -m | awk -F, '{print substr($4, 0, length($4)-1)}' | tr -d '%'")
 (defpoll current-volume :interval "0.5s" "pamixer --get-volume" )
 (defpoll muted :interval "0.5s" "pamixer --get-mute")
+(defpoll battery :interval "2.0s" "acpi | ~/.config/eww/bar/battery.py")
 
 (defwidget buttonRowRight []
   (box  :orientation "horizontal"
@@ -45,6 +44,9 @@
                 )
         (box :class "container"
                 (label :text {muted ? "󰖁 ${current-volume}" : "󰕾 ${current-volume}"})
+                )
+        (box :class "container"
+                (label :text battery)
                 )
         (box :class "container"
                 (label :class "clock"
