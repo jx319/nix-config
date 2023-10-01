@@ -2,23 +2,33 @@
 {
   services.dunst = {
     enable = true;
-    settings = {
+    settings = {    
       global = {
-        frame_color = "#89b4fa";
         separator_color = "frame";
-      };
-      urgency_low= {
+
+        follow = "mouse";
+        width = 400;
+        height = 150;
+        origin = "top-center";
+        offset = "0x0";
+        font = "JetBrainsMono Nerd Font 16";
+        corner_radius = 10;      
+        };
+        
+      urgency_low = {
+        frame_color = "#45475a";
         background = "#1e1e2e";
         foreground = "#cdd6f4";
       };
       urgency_normal = {
+        frame_color = "#a6e3a1";
         background = "#1e1e2e";
         foreground = "#cdd6f4";
       };
       urgency_critical = {
         background = "#1e1e2e";
         foreground = "#cdd6f4";
-        frame_color = "#fab387";
+        frame_color = "#f38ba8";
       };
     };
   };
