@@ -60,7 +60,7 @@
   
   users.users.jonas = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirt" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
     packages = with pkgs; [
       python3
       tree
