@@ -62,6 +62,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirt" ];
     packages = with pkgs; [
+      python3
       tree
       ranger
       ktorrent
@@ -174,7 +175,7 @@
   ];
   
   networking.firewall = { 
-    enable = true;  
+    enable = false;  
     # Open ports in the firewall.
     # networking.firewall.allowedTCPPorts = [ ... ];
     # networking.firewall.allowedUDPPorts = [ ... ];
