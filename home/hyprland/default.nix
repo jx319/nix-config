@@ -10,13 +10,9 @@
 
 		# See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
-		# Execute your favorite apps at launch
-		#exec-once = start-wl
-		#exec-once = waybar
 		exec-once = swww init
 		exec-once = sww img ~/nix-config/home/nix-wallpaper-catppuccin-mocha-green.png
 		exec-once = dunst
-		#exec-once = nwg-drawer -r -nocats
 		exec-once = eww daemon
 		exec-once = eww open bar
 		 
@@ -60,14 +56,7 @@
 		    # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
 		    rounding = 10
-
-		#    blur {
-		#        enabled = true
-		#        size = 3
-		#        passes = 1
-		#    }
-
-		    drop_shadow = true
+	      drop_shadow = true
 		    shadow_range = 4
 		    shadow_render_power = 3
 		    col.shadow = rgba(1a1a1aee)
@@ -79,11 +68,7 @@
 		    # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
 		    bezier = myBezier, 0.05, 0.9, 0.1, 1.05
-				bezier = linear, 0, 0, 0.5, 0.5
-				bezier = easeInOutBack, 0.68, -0.6, 0.32, 1.6
-				bezier = easeInBack, 0, 0, 0.66, -0.56
-				bezier = easeInOutCubic, 0.65, 0, 0.35, 1
-								
+											
 		    animation = windows, 1, 7, myBezier, slide
 		    animation = windowsOut, 1, 7, myBezier, slide
 		    animation = border, 1, 10, default
