@@ -18,6 +18,9 @@
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
   };
+  services.udev.packages = [
+    pkgs.swayosd
+  ];
   
   networking = {
   	hostName = "nixos";
@@ -60,7 +63,7 @@
   
   users.users.jonas = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" ];
     packages = with pkgs; [
       python3
       tree

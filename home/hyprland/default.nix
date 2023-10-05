@@ -134,13 +134,13 @@
 		
 		
 		# brightness
-		bind = , xf86monbrightnessup, exec, brightnessctl set +5%
-		bind = , xf86monbrightnessdown, exec, brightnessctl set 5%-
+		bind = , xf86monbrightnessup, exec, swayosd --brightness=raise
+		bind = , xf86monbrightnessdown, exec, swayosd --brightness=lower
 
 		# volume
-		bind = , xf86audioraisevolume, exec, pamixer -i 5
-		bind = , xf86audiolowervolume, exec, pamixer -d 5
-		bind = , xf86audiomute, exec, pamixer -t
+		bind = , xf86audioraisevolume, exec, swayosd --output-volume=raise
+		bind = , xf86audiolowervolume, exec, swayosd --output-volume=lower
+		bind = , xf86audiomute, exec, swayosd --output-volume=mute-toggle
 		
 		# Move focus with mainMod + arrow keys
 		bind = $mainMod, left, movefocus, l
