@@ -12,7 +12,7 @@
 		# See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
 		exec-once = swww init
-		exec-once = sww img ~/nix-config/home/nix-wallpaper-catppuccin-mocha-green.png
+		exec-once = sww img ~/nix-config/home/nix-black-4k.png
 		exec-once = dunst
 		exec-once = eww daemon
 		exec-once = eww open bar
