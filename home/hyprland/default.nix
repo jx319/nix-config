@@ -5,7 +5,8 @@
 
 	extraConfig = ''
 		# See https://wiki.hyprland.org/Configuring/Monitors/
-		monitor=,1920x1080@60,0x0,1
+		source = ~/.config/hypr/monitors.conf
+		source = ~/.config/hypr/workspaces.conf
 
 
 		# See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -108,6 +109,7 @@
 		# windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
 		windowrulev2 = float,class:(prismlauncher)
 		windowrulev2 = float,class:(polkit-kde-authentication-agent-1)
+		windowrulev2 = float,class:(nwg-displays)
 		# See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
 
@@ -121,7 +123,7 @@
 		bind = $mainMod, E, exec, thunar
 		bind = $mainMod, V, togglefloating,
 		bind = $mainMod, R, exec, wofi --show drun
-		bind = $mainMod, P, pseudo, # dwindle
+		bind = $mainMod, X, pseudo, # dwindle
 		bind = $mainMod, J, togglesplit, # dwindle
 		bind = $mainMod, F, exec, librewolf
 		bind = $mainMod, G, fullscreen
@@ -131,7 +133,8 @@
 		bind = SHIFT, print, exec, grim - | swappy -f -
 		bind = $mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l "Adrenaline"
 		bind = $mainMod, S, exec, flatpak run org.prismlauncher.PrismLauncher -l "SkyClient"
-		
+
+		bind = $mainMod, P, exec, nwg-displays
 		
 		# brightness
 		bind = , xf86monbrightnessup, exec, swayosd --brightness=raise

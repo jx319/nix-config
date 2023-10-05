@@ -75,7 +75,8 @@
       hyprpicker
       vitetris
       glxinfo
-    ];
+      inputs.nwg-displays.packages.${pkgs.system}.default
+      ];
   };
   
   security.polkit.enable = true;

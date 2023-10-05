@@ -19,6 +19,8 @@
     eww.inputs.rust-overlay.follows = "rust-overlay";
     
     catppuccin-alacritty-theme.url = "github:ohlus/catppuccin-alacritty-theme.nix";
+
+    nwg-displays.url = "github:nwg-piotr/nwg-displays";
     
     };
 
