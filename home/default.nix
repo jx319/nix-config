@@ -2,6 +2,7 @@
   imports = [
     inputs.hyprland.homeManagerModules.default
 
+    ./zellij
     ./swayosd
     ./git
     ./hyprland
