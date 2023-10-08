@@ -99,7 +99,6 @@
     swappy
     wl-clipboard
     imagemagick
-    helix
     gimp
     (import ./scripts/screenshot.nix { inherit pkgs; })
     brightnessctl

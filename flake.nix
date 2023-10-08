@@ -21,7 +21,8 @@
     catppuccin-alacritty-theme.url = "github:ohlus/catppuccin-alacritty-theme.nix";
 
     nwg-displays.url = "github:nwg-piotr/nwg-displays";
-    
+
+    helix.url = "github:helix-editor/helix";
     };
 
   outputs = { nixpkgs, home-manager, catppuccin-alacritty-theme, ... }@inputs: {
