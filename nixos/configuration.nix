@@ -76,7 +76,8 @@
       vitetris
       glxinfo
       inputs.nwg-displays.packages.${pkgs.system}.default
-      ];
+      distrobox
+    ];
   };
   
   security.polkit.enable = true;
@@ -119,7 +120,11 @@
 
   programs.gamemode.enable = true;
 
-  virtualisation.libvirtd.enable = true;
+  virtualisation = {
+    libvirtd.enable = true;
+    podman.enable = true;
+  };
+
   
   xdg.portal = {
   	enable = true;
