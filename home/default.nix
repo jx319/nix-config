@@ -26,9 +26,12 @@
   home = {
     username = "jonas";
     homeDirectory = "/home/jonas";
-    sessionVariables = {
-      QT_QPA_PLATFORMTHEME = "qt5ct"; 
-    };
+    packages = with pkgs; [
+      (catppuccin-kvantum.override {
+        accent = "Green";
+        variant = "Mocha";
+      })
+    ];
   };
 
   programs.home-manager.enable = true;
@@ -37,13 +40,35 @@
   gtk = {
   	enable = true;
 	  theme = {
-    		name = "Catppuccin-Mocha-Standard-Green-Dark";
-		    package = pkgs.catppuccin-gtk.override {
-			    accents = [ "green" ];
-          size = "standard";
-			    variant = "mocha";
-    		};
-    	};
+  		name = "Catppuccin-Mocha-Standard-Green-Dark";
+	    package = pkgs.catppuccin-gtk.override {
+		    accents = [ "green" ];
+        size = "standard";
+		    variant = "mocha";
+  		};
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "green";
+      };
+    };
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "qtct";
+    style = {
+      name = "kvantum";
+    };
+  };
+  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" { General.theme = "Catppuccin-Mocha-Green"; };
+  xdg.configFile."qt5ct/qt5ct.conf".source = (pkgs.formats.ini {}).generate "qt5ct.conf" {
+    Appearance = {
+      icon_theme = "Papirus-Dark";
+      style = "kvantum";
+    };
   };
   
   dconf.settings = {

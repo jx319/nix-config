@@ -69,8 +69,6 @@
       tree
       ranger
       ktorrent
-      libsForQt5.qt5ct
-      lightly-qt
       libsForQt5.kmenuedit
       hyprpicker
       vitetris
