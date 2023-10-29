@@ -54,6 +54,14 @@
         accent = "green";
       };
     };
+    font = {
+      name = "JetBrainsMono Nerd Font Propo";
+    };
+    cursorTheme = {
+      name = "Catppuccin-Mocha-Green-Cursors";
+      package = pkgs.catppuccin-cursors.mochaGreen;
+      size = 32;
+    };
   };
 
   qt = {
@@ -68,6 +76,10 @@
     Appearance = {
       icon_theme = "Papirus-Dark";
       style = "kvantum";
+    };
+    Fonts = {
+      fixed = ''"JetBrainsMono Nerd Font,12,-1,5,50,0,0,0,0,0,Regular"'';
+      general = ''"JetBrainsMono Nerd Font Propo,12,-1,5,50,0,0,0,0,0,Regular"'';
     };
   };
   
