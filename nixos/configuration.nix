@@ -87,7 +87,6 @@
     neofetch
     btop
     wofi
-    swww
     dunst
     libnotify
     killall

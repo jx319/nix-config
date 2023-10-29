@@ -1,4 +1,6 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, ... }: 
+
+{
   wayland.windowManager.hyprland = {
   	enable = true;
 		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -16,15 +18,15 @@
 
 			# daemons
 			exec-once = [
-				"swww init"
-				"swww img ${./nix-black-4k.png}"
+				"hyprctl setcursor Catppuccin-Mocha-Green-Cursors 32"
+				"${pkgs.hyprpaper}/bin/hyprpaper"
 				"${pkgs.dunst}/bin/dunst"
 				"${inputs.eww.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
 				"${inputs.eww.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
 			];
 
 			env = [
-				"XCURSOR_SIZE,24"
+				"XCURSOR_SIZE,32"
 				"QT_QPA_PLATFORMTHEME,qt5ct"
 			];
 
@@ -170,4 +172,10 @@
 			];
 		};	
 	};
+
+	xdg.configFile."hypr/hyprpaper.conf".text = 
+	''
+		preload = ${./nix-black-4k.png}
+		wallpaper = ,${./nix-black-4k.png}
+	'';
 }
