@@ -1,5 +1,6 @@
 { inputs, lib, config, pkgs, ... }: {
   imports = [
+    ./tofi
     ./zellij
     ./swayosd
     ./git

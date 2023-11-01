@@ -106,9 +106,9 @@
 				"$mainMod, Q, exec, alacritty"
 				"$mainMod, C, killactive"
 				"$mainMod, M, exit"
-				"$mainMod, E, exec, thunar"
+				"$mainMod, E, exec, ${pkgs.libsForQt5.dolphin}/bin/dolphin"
 				"$mainMod, V, togglefloating"
-				"$mainMod, R, exec, wofi --show drun"
+				"$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
 				"$mainMod, X, pseudo," # dwindle
 				"$mainMod, J, togglesplit" # dwindle
 				"$mainMod, F, exec, librewolf"
