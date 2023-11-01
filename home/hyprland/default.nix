@@ -19,6 +19,7 @@
 			# daemons
 			exec-once = [
 				"hyprctl setcursor Catppuccin-Mocha-Green-Cursors 32"
+				"${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
 				"${pkgs.hyprpaper}/bin/hyprpaper"
 				"${pkgs.dunst}/bin/dunst"
 				"${inputs.eww.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
@@ -172,10 +173,4 @@
 			];
 		};	
 	};
-
-	xdg.configFile."hypr/hyprpaper.conf".text = 
-	''
-		preload = ${./nix-black-4k.png}
-		wallpaper = ,${./nix-black-4k.png}
-	'';
 }
