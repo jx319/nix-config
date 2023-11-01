@@ -23,7 +23,7 @@
     nwg-displays.url = "github:nwg-piotr/nwg-displays";
 
     helix.url = "github:helix-editor/helix";
-    };
+  };
 
   outputs = { nixpkgs, home-manager, catppuccin-alacritty-theme, ... }@inputs: {
     nixosConfigurations = {
