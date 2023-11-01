@@ -11,7 +11,7 @@
     # Hyprland
     hyprland = {
       url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+      #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
