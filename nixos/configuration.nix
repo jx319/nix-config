@@ -59,6 +59,8 @@
       };
       jack.enable = true;
     };
+
+    blueman.enable = true;
   };
   
   users.users.jonas = {
@@ -132,6 +134,15 @@
   	enable = true;
 	  xwayland.enable = true;
     package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+  };
+
+  programs.wayfire = {
+    enable = true;
+    plugins = with pkgs.wayfirePlugins; [
+      wcm
+      wayfire-plugins-extra
+      wf-shell
+    ];
   };
   
   nix.settings = {
