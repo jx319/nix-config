@@ -13,17 +13,6 @@
     ./dunst
   ];
 
-  nixpkgs = {
-    overlays = [
-      inputs.catppuccin-alacritty-theme.overlays.default
-    ];
-    config = {
-      allowUnfree = true;
-      # Workaround for https://github.com/nix-community/home-manager/issues/2942
-      allowUnfreePredicate = (_: true);
-    };
-  };
-
   home = {
     username = "jonas";
     homeDirectory = "/home/jonas";

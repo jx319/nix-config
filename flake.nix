@@ -32,16 +32,17 @@
         specialArgs = { inherit inputs; }; 
 	      modules = [ 
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ catppuccin-alacritty-theme.overlays.default ]; })
-          ./nixos/configuration.nix 
+          ./nixos/configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jonas = import ./home;
+              extraSpecialArgs = { inherit inputs; };
+            };
+          }
         ];
-      };
-    };
-
-    homeConfigurations = {
-      "jonas@nixos" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; 
-	      extraSpecialArgs = { inherit inputs; };
-        modules = [ ./home ];
       };
     };
   };
