@@ -17,7 +17,7 @@
       efi.canTouchEfiVariables = true;
     };
     plymouth.enable = true;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_5;
   };
   services.udev.packages = [
     pkgs.swayosd
