@@ -1,5 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   imports = [
+    ./shell
     ./tofi
     ./zellij
     ./swayosd

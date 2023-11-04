@@ -63,7 +63,8 @@
 
     blueman.enable = true;
   };
-  
+
+  programs.zsh.enable = true;
   users.users.jonas = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" ];
@@ -79,6 +80,7 @@
       inputs.nwg-displays.packages.${pkgs.system}.default
       distrobox
     ];
+    shell = pkgs.zsh;
   };
   
   security.polkit.enable = true;
