@@ -16,8 +16,8 @@
       systemd-boot.configurationLimit = 5;
       efi.canTouchEfiVariables = true;
     };
-    plymouth.enable = true;
-    kernelPackages = pkgs.linuxPackages_6_5;
+    #plymouth.enable = true; doesn't work with Linux 6.6 for some reason
+    kernelPackages = pkgs.linuxPackages_latest;
   };
   services.udev.packages = [
     pkgs.swayosd
