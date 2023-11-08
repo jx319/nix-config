@@ -118,6 +118,7 @@
     obs-studio
     signal-desktop
     acpi
+    libreoffice
   ];
 
   programs.gamemode.enable = true;
