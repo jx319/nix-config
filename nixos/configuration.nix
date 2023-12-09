@@ -1,21 +1,17 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running `nixos-help`).
-
 { pkgs, inputs, ... }:
 
-let
-  swayConfig = pkgs.writeText "greetd-sway-config" ''
-    
-    #exec "${pkgs.greetd.regreet}/bin/regreet; swaymsg exit"
-    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
-    bindsym Mod4+shift+e exec swaynag \
-      -t warning \
-      -m 'What do you want to do?' \
-      -b 'Poweroff' 'systemctl poweroff' \
-      -b 'Reboot' 'systemctl reboot'
-  '';
-in
+#let
+#  swayConfig = pkgs.writeText "greetd-sway-config" ''
+#    
+#    #exec "${pkgs.greetd.regreet}/bin/regreet; swaymsg exit"
+#    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+#    bindsym Mod4+shift+e exec swaynag \
+#      -t warning \
+#      -m 'What do you want to do?' \
+#      -b 'Poweroff' 'systemctl poweroff' \
+#      -b 'Reboot' 'systemctl reboot'
+#  '';
+#in
 {
   imports =
     [ 
@@ -24,8 +20,11 @@ in
 
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      systemd-boot.configurationLimit = 5;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
+      
       efi.canTouchEfiVariables = true;
     };
     #plymouth.enable = true; doesn't work with Linux 6.6 for some reason
@@ -41,8 +40,21 @@ in
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
   
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      
+      substituters = [
+        "https://hyprland.cachix.org"
+        "https://helix.cachix.org"
+      ];
+      
+      trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
+      ];
+    };
+  };
   # Select internationalisation properties.
   i18n.defaultLocale = "de_DE.UTF-8";
 
@@ -110,11 +122,35 @@ in
   #  };
   #};
   
+  security = {
+    rtkit.enable = true;
 
-  # pipewire sound
-  security.rtkit.enable = true;
+    polkit.enable = true;
+  };
+  
+  programs = {
+    zsh.enable = true;
+    
+    gamemode.enable = true;
+    
+    hyprland = {
+  	  enable = true;
+	    xwayland.enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+    };
+    
+    wayfire = {
+      enable = true;
+      plugins = with pkgs.wayfirePlugins; [
+        wcm
+        wayfire-plugins-extra
+        wf-shell
+      ];
+    };
 
-  programs.zsh.enable = true;
+    dconf.enable = true;
+  };
+  
   users.users.jonas = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" ];
@@ -133,101 +169,72 @@ in
     shell = pkgs.zsh;
   };
   
-  security.polkit.enable = true;
-  
-  environment.systemPackages = with pkgs; [
-    curl
-    firefox
-    librewolf
-    neofetch
-    btop
-    wofi
-    dunst
-    libnotify
-    killall
-    grim
-    slurp
-    swaylock-effects
-    wlogout
-    swappy
-    wl-clipboard
-    imagemagick
-    gimp
-    (import ./scripts/screenshot.nix { inherit pkgs; })
-    brightnessctl
-    virt-manager
-    qemu
-    libsForQt5.polkit-kde-agent
-    wl-clipboard
-    socat
-    jq
-    alacritty
-    xfce.thunar
-    xfce.thunar-volman
-    pamixer
-    obs-studio
-    signal-desktop
-    acpi
-    libreoffice
+  environment = {
+    systemPackages = with pkgs; [
+      curl
+      firefox
+      librewolf
+      neofetch
+      btop
+      wofi
+      dunst
+      libnotify
+      killall
+      grim
+      slurp
+      swaylock-effects
+      wlogout
+      swappy
+      wl-clipboard
+      imagemagick
+      gimp
+      (import ./scripts/screenshot.nix { inherit pkgs; })
+      brightnessctl
+      virt-manager
+      qemu
+      libsForQt5.polkit-kde-agent
+      wl-clipboard
+      socat
+      jq
+      alacritty
+      xfce.thunar
+      xfce.thunar-volman
+      pamixer
+      obs-studio
+      signal-desktop
+      acpi
+      libreoffice
     
-    (catppuccin-gtk.override {
-		    accents = [ "green" ];
-        size = "standard";
-		    variant = "mocha";
-  	})
-    catppuccin-cursors.mochaGreen
-    (catppuccin-papirus-folders.override {
-      flavor = "mocha";
-      accent = "green";
-    })
-    libsForQt5.qt5.qtsvg
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtquickcontrols2    
-  ];
-
-  programs.gamemode.enable = true;
+      (catppuccin-gtk.override {
+  		    accents = [ "green" ];
+          size = "standard";
+  		    variant = "mocha";
+    	})
+      catppuccin-cursors.mochaGreen
+      (catppuccin-papirus-folders.override {
+        flavor = "mocha";
+        accent = "green";
+      })
+      libsForQt5.qt5.qtsvg
+      libsForQt5.qt5.qtgraphicaleffects
+      libsForQt5.qt5.qtquickcontrols2    
+    ];
+    sessionVariables = {
+    	NIXOS_OZONE_WL = "1";
+      EDITOR = "hx";
+    };
+  };
 
   virtualisation = {
     libvirtd.enable = true;
     podman.enable = true;
   };
-
   
   xdg.portal = {
   	enable = true;
 	  extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
   };
-  
-  programs.hyprland = {
-  	enable = true;
-	  xwayland.enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-  };
-
-  programs.wayfire = {
-    enable = true;
-    plugins = with pkgs.wayfirePlugins; [
-      wcm
-      wayfire-plugins-extra
-      wf-shell
-    ];
-  };
-  
-  nix.settings = {
-    substituters = [
-      "https://hyprland.cachix.org"
-      "https://helix.cachix.org"
-    ];
-    trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "helix.cachix.org-1:ejp9KQpR1FBI2onstMQ34yogDm4OgU2ru6lIwPvuCVs="
-      ];
-  };
-  
-  environment.sessionVariables = {
-  	NIXOS_OZONE_WL = "1";
-    EDITOR = "hx";
-  };
+    
   
   hardware = {
   	opengl = {
@@ -241,7 +248,6 @@ in
     };
     bluetooth.enable = true;	
   };
-  programs.dconf.enable = true;
   
   systemd = {
     user.services.polkit-kde-authentication-agent-1 = {
@@ -260,7 +266,7 @@ in
   };
   
   fonts.packages = with pkgs; [
-  	(nerdfonts.override { fonts = [ "JetBrainsMono" "SpaceMono" "RobotoMono" "Arimo" ]; })
+  	(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
   
   networking.firewall = { 
