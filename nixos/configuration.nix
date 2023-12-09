@@ -4,6 +4,18 @@
 
 { pkgs, inputs, ... }:
 
+let
+  swayConfig = pkgs.writeText "greetd-sway-config" ''
+    
+    #exec "${pkgs.greetd.regreet}/bin/regreet; swaymsg exit"
+    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; swaymsg exit"
+    bindsym Mod4+shift+e exec swaynag \
+      -t warning \
+      -m 'What do you want to do?' \
+      -b 'Poweroff' 'systemctl poweroff' \
+      -b 'Reboot' 'systemctl reboot'
+  '';
+in
 {
   imports =
     [ 
@@ -19,9 +31,6 @@
     #plymouth.enable = true; doesn't work with Linux 6.6 for some reason
     kernelPackages = pkgs.linuxPackages_latest;
   };
-  services.udev.packages = [
-    pkgs.swayosd
-  ];
   
   networking = {
   	hostName = "nixos";
@@ -36,20 +45,31 @@
   
   # Select internationalisation properties.
   i18n.defaultLocale = "de_DE.UTF-8";
+
   
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
+  services = {   
+    udev.packages = [
+      pkgs.swayosd
+    ];
 
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+    xserver = {
+      enable = true;
+      displayManager.sddm = {
+        enable = true;
+        wayland.enable = true;
+        theme = "${import ./catppuccin-sddm.nix { inherit pkgs; }}";
+      };
+      desktopManager.plasma5 = {
+        enable = true;
+      };
+    };
     
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # pipewire sound
-  security.rtkit.enable = true;
-  services = {
+    printing = {
+      enable = true;
+    };
+        
+    flatpak.enable = true;
+    
     pipewire = {
       enable = true;
       audio.enable = true;
@@ -63,6 +83,36 @@
 
     blueman.enable = true;
   };
+ 
+  
+  #services.greetd = {
+  #  enable = true;
+  #  settings = {
+  #    default_session = {
+  #      #command = "${pkgs.dbus}/bin/dbus-run-session ${pkgs.sway}/bin/sway --config ${swayConfig}";
+  #      command = "${pkgs.greetd.tuigreet}/bin/tuigreet -t li";
+  #      user = "greeter";
+  #    };
+  #  };
+  #};
+  #programs.regreet = {
+  #  enable = true;
+  #  settings = {
+  #    background = {
+  #      path = ../home/hyprland/nix-black-4k.png;
+  #    };
+  #    GTK = {
+  #      cursor_theme_name = "Catppuccin-Mocha-Green-Cursors";
+  #      font_name = "JetBrainsMono Nerd Font Propo";
+  #      icon_theme_name = "Papirus-Dark";
+  #      theme_name = "Catppuccin-Mocha-Standard-Green-Dark";
+  #    };
+  #  };
+  #};
+  
+
+  # pipewire sound
+  security.rtkit.enable = true;
 
   programs.zsh.enable = true;
   users.users.jonas = {
@@ -119,6 +169,20 @@
     signal-desktop
     acpi
     libreoffice
+    
+    (catppuccin-gtk.override {
+		    accents = [ "green" ];
+        size = "standard";
+		    variant = "mocha";
+  	})
+    catppuccin-cursors.mochaGreen
+    (catppuccin-papirus-folders.override {
+      flavor = "mocha";
+      accent = "green";
+    })
+    libsForQt5.qt5.qtsvg
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtquickcontrols2    
   ];
 
   programs.gamemode.enable = true;
@@ -177,7 +241,6 @@
     };
     bluetooth.enable = true;	
   };
-  services.flatpak.enable = true;
   programs.dconf.enable = true;
   
   systemd = {
