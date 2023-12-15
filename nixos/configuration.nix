@@ -94,6 +94,10 @@
     };
 
     blueman.enable = true;
+
+    fwupd = {
+      enable = true;
+    };
   };
  
   
