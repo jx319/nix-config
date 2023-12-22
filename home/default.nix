@@ -14,6 +14,7 @@
     ./wofi
     ./alacritty
     ./dunst
+    ./kdeconnect
   ];
 
   home = {
