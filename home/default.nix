@@ -15,6 +15,7 @@
     ./alacritty
     ./dunst
     ./kdeconnect
+    ./qutebrowser
   ];
 
   home = {

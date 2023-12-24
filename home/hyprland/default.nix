@@ -125,6 +125,7 @@
 				"$mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l \"Adrenaline\""
 				"$mainMod, S, exec, flatpak run org.prismlauncher.PrismLauncher -l \"SkyClient\""
 				"$mainMod, P, exec, nwg-displays"
+				"$mainMod, D, exec, qutebrowser"
 		
 				# brightness
 				", xf86monbrightnessup, exec, ${pkgs.swayosd}/bin/swayosd --brightness=raise"
