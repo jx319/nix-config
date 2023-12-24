@@ -173,6 +173,7 @@
       glxinfo
       inputs.nwg-displays.packages.${pkgs.system}.default
       distrobox
+      mpv
     ];
     shell = pkgs.zsh;
   };
