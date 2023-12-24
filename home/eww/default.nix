@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
 	programs.eww = {
 		enable = true;
-		package = inputs.eww.packages.${pkgs.system}.eww-wayland;
+		package = inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland;
 		configDir = ../eww;
 	};
 }
