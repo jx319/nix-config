@@ -5,6 +5,10 @@
   	enable = true;
 		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
+		plugins = [
+			inputs.hycov.packages.${pkgs.system}.hycov
+		];
+
 		settings = {
 			# catppuccin colors
 			"$green" = "0xffa6e3a1";
@@ -22,8 +26,8 @@
 				"${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
 				"${pkgs.hyprpaper}/bin/hyprpaper"
 				"${pkgs.dunst}/bin/dunst"
-				"${inputs.eww.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
-				"${inputs.eww.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
+				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
+				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
 			];
 
 			env = [
@@ -58,7 +62,7 @@
 		      drop_shadow = true;
 			    shadow_range = 4;
 			    shadow_render_power = 3;
-			    "col.shadow" = "$green";
+			    "col.shadow" = "$surface1";
 			};
 
 			animations = {
@@ -165,12 +169,25 @@
 				# Scroll through existing workspaces with mainMod + scroll
 				"$mainMod, mouse_down, workspace, e+1"
 				"$mainMod, mouse_up, workspace, e-1"
+
+				# hycov 
+				"ALT, TAB, hycov:toggleoverview"
 			];
 
 			bindm = [
 				"$mainMod, mouse:272, movewindow"
 				"$mainMod, mouse:273, resizewindow"
 			];
-		};	
+		};
+
+		extraConfig = ''
+			plugin {
+				hycov {
+					enable_hotarea = 0
+					enable_alt_release_exit = 1
+					alt_toggle_auto_next = 1
+				}
+			}
+		'';
 	};
 }

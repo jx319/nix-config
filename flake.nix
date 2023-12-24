@@ -14,9 +14,12 @@
       #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    eww.url = "github:elkowar/eww";
-    eww.inputs.rust-overlay.follows = "rust-overlay";
+    hycov = {
+      url = "github:DreamMaoMao/hycov";
+      inputs.hyprland.follows = "hyprland";
+    };
+    
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     
     catppuccin-alacritty-theme.url = "github:ohlus/catppuccin-alacritty-theme.nix";
 
