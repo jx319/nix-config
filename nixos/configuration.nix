@@ -198,6 +198,8 @@
       distrobox
       mpv
       polychromatic
+      pods
+      packwiz
     ];
     shell = pkgs.zsh;
   };
