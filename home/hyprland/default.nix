@@ -122,7 +122,7 @@
 				"$mainMod, L, exec, ${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x10 --effect-vignette 0.5:0.5 --ring-color 00000000 --key-hl-color a6e3a1ff --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --fade-in 0.2"
 				", print, exec, screenshot"
 				"SHIFT, print, exec, grim - | swappy -f -"
-				"$mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l \"Adrenaline\""
+				"$mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l \"Additive(1)\""
 				"$mainMod, S, exec, flatpak run org.prismlauncher.PrismLauncher -l \"SkyClient\""
 				"$mainMod, P, exec, nwg-displays"
 				"$mainMod, D, exec, qutebrowser"
