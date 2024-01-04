@@ -11,7 +11,7 @@
         height = 150;
         origin = "top-center";
         offset = "0x0";
-        font = "JetBrainsMono Nerd Font 16";
+        font = "JetBrainsMono Nerd Font 12";
         corner_radius = 10;      
         };
         
