@@ -161,7 +161,7 @@
   
   users.users.jonas = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" ];
+    extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" "plugdev" ];
     packages = with pkgs; [
       python3
       tree
@@ -174,6 +174,7 @@
       inputs.nwg-displays.packages.${pkgs.system}.default
       distrobox
       mpv
+      polychromatic
     ];
     shell = pkgs.zsh;
   };
@@ -213,7 +214,6 @@
       signal-desktop
       acpi
       libreoffice
-    
       (catppuccin-gtk.override {
   		    accents = [ "green" ];
           size = "standard";
@@ -226,7 +226,8 @@
       })
       libsForQt5.qt5.qtsvg
       libsForQt5.qt5.qtgraphicaleffects
-      libsForQt5.qt5.qtquickcontrols2    
+      libsForQt5.qt5.qtquickcontrols2
+      openrazer-daemon
     ];
     sessionVariables = {
     	NIXOS_OZONE_WL = "1";
@@ -255,7 +256,13 @@
         libvdpau-va-gl
       ];
     };
-    bluetooth.enable = true;	
+    bluetooth.enable = true;
+
+    openrazer = {
+      enable = true;
+      users = [ "jonas" ];
+    };
+    
   };
   
   systemd = {
