@@ -165,7 +165,7 @@
     gamemode.enable = true;
     
     hyprland = {
-  	  enable = true;
+      enable = true;
 	    xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
@@ -177,6 +177,11 @@
         wayfire-plugins-extra
         wf-shell
       ];
+    };
+
+    sway = {
+      enable = true;
+      package = pkgs.swayfx;
     };
 
     dconf.enable = true;

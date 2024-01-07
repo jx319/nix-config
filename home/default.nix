@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./swayfx
     ./shell
     ./tofi
     ./zellij
