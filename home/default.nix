@@ -1,7 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.ags.homeManagerModules.default
+
+    ./ags
     ./swayfx
     ./shell
     ./tofi

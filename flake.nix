@@ -18,6 +18,8 @@
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
     };
+
+    ags.url = "github:Aylur/ags";
     
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     
