@@ -28,6 +28,7 @@
 				"${pkgs.dunst}/bin/dunst"
 				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
 				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
+				"${pkgs.swayosd}/bin/swayosd-server"
 			];
 
 			env = [
@@ -100,6 +101,7 @@
 			# window rules
 			windowrulev2 = [
 				"float,class:(prismlauncher)"
+				"float,class:(xdg-desktop-portal-gtk)"
 				"float,class:(polkit-kde-authentication-agent-1)"
 				"float,class:(nwg-displays)"
 			];
@@ -128,13 +130,13 @@
 				"$mainMod, D, exec, qutebrowser"
 		
 				# brightness
-				", xf86monbrightnessup, exec, ${pkgs.swayosd}/bin/swayosd --brightness=raise"
-				", xf86monbrightnessdown, exec, ${pkgs.swayosd}/bin/swayosd --brightness=lower"
+				", xf86monbrightnessup, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness=raise"
+				", xf86monbrightnessdown, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness=lower"
 
 				# volume
-				", xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=raise"
-				", xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=lower"
-				", xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd --output-volume=mute-toggle"
+				", xf86audioraisevolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=raise"
+				", xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=lower"
+				", xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=mute-toggle"
 
 		
 				# Move focus with mainMod + arrow keys
