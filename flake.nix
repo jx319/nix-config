@@ -23,20 +23,20 @@
     
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     
-    catppuccin-alacritty-theme.url = "github:ohlus/catppuccin-alacritty-theme.nix";
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
 
     nwg-displays.url = "github:nwg-piotr/nwg-displays";
 
     helix.url = "github:helix-editor/helix";
   };
 
-  outputs = { nixpkgs, home-manager, catppuccin-alacritty-theme, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; }; 
 	      modules = [ 
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ catppuccin-alacritty-theme.overlays.default ]; })
+          
           ./nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
