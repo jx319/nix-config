@@ -14,6 +14,8 @@
       #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
 
+    pyprland.url = "github:hyprland-community/pyprland";
+    
     hycov = {
       url = "github:DreamMaoMao/hycov";
       inputs.hyprland.follows = "hyprland";
