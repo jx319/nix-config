@@ -11,6 +11,7 @@
     ./zellij
     ./swayosd
     ./git
+    ./gitui
     ./hyprland
     ./eww
     ./helix
