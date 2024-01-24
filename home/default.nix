@@ -5,6 +5,7 @@
     inputs.ags.homeManagerModules.default
 
     ./ags
+    ./eza
     ./swayfx
     ./shell
     ./tofi
