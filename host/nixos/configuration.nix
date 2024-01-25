@@ -100,7 +100,7 @@
       displayManager.sddm = {
         enable = true;
         wayland.enable = true;
-        theme = "${import ./catppuccin-sddm.nix { inherit pkgs; }}";
+        theme = "${import ../../pkgs/catppuccin-sddm { inherit pkgs; }}";
       };
       desktopManager.plasma5 = {
         enable = true;
@@ -194,60 +194,18 @@
   users.users.jonas = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" "plugdev" ];
-    packages = with pkgs; [
-      python3
-      tree
-      ranger
-      ktorrent
-      libsForQt5.kmenuedit
-      hyprpicker
-      vitetris
-      glxinfo
-      inputs.nwg-displays.packages.${pkgs.system}.default
-      distrobox
-      mpv
-      polychromatic
-      pods
-      packwiz
-    ];
     shell = pkgs.zsh;
   };
   
   environment = {
     systemPackages = with pkgs; [
-      curl
       firefox
       librewolf
       neofetch
-      btop
-      wofi
-      dunst
       libnotify
       killall
-      grim
-      slurp
-      swaylock-effects
-      wlogout
-      swappy
       wl-clipboard
-      imagemagick
       gimp
-      (import ./scripts/screenshot.nix { inherit pkgs; })
-      brightnessctl
-      virt-manager
-      qemu
-      libsForQt5.polkit-kde-agent
-      wl-clipboard
-      socat
-      jq
-      alacritty
-      xfce.thunar
-      xfce.thunar-volman
-      pamixer
-      obs-studio
-      signal-desktop
-      acpi
-      libreoffice
       (catppuccin-gtk.override {
   		    accents = [ "green" ];
           size = "standard";

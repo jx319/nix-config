@@ -125,7 +125,7 @@
 			"$mainMod" = "SUPER";
 
 			bind = [
-				"$mainMod, Q, exec, alacritty"
+				"$mainMod, Q, exec, ${pkgs.alacritty}/bin/alacritty"
 				"$mainMod, C, killactive"
 				"$mainMod, M, exit"
 				"$mainMod, E, exec, ${pkgs.libsForQt5.dolphin}/bin/dolphin"
@@ -133,16 +133,35 @@
 				"$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
 				"$mainMod, X, pseudo," # dwindle
 				"$mainMod, J, togglesplit" # dwindle
-				"$mainMod, F, exec, librewolf"
+				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"
 				"$mainMod, B, exec, flatpak run org.prismlauncher.PrismLauncher"
-				"$mainMod, L, exec, ${pkgs.swaylock-effects}/bin/swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x10 --effect-vignette 0.5:0.5 --ring-color 00000000 --key-hl-color a6e3a1ff --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --fade-in 0.2"
-				", print, exec, screenshot"
-				"SHIFT, print, exec, grim - | swappy -f -"
+				"$mainMod, L, exec, ${pkgs.swaylock-effects}/bin/swaylock \
+					--screenshots \
+					--clock \
+					--indicator \
+					--indicator-radius 100 \
+					--indicator-thickness 7 \
+					--effect-blur 7x10 \
+					--effect-vignette 0.5:0.5 \
+					--ring-color 00000000 \
+					--key-hl-color a6e3a1ff \
+					--line-color 00000000 \
+					--inside-color 00000088 \
+					--separator-color 00000000 \
+					--fade-in 0.2"
+				
+				", print, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp \
+					-c 00000000 \
+					-b a6e3a1a0 -d \
+					-F 'JetBrainsMono Nerd Font')\" - | ${pkgs.swappy}/bin/swappy -f - "
+			
+				"SHIFT, print, exec, ${pkgs.grim}/bin/grim - | ${pkgs.swappy}/bin/swappy -f -"
+				
 				"$mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l \"Additive(1)\""
 				"$mainMod, S, exec, flatpak run org.prismlauncher.PrismLauncher -l \"SkyClient\""
-				"$mainMod, P, exec, nwg-displays"
-				"$mainMod, D, exec, qutebrowser"
+				"$mainMod, P, exec, ${inputs.nwg-displays.packages.${pkgs.system}.default}/bin/nwg-displays"
+				"$mainMod, D, exec, ${pkgs.qutebrowser}/bin/qutebrowser"
 		
 				# brightness
 				", xf86monbrightnessup, exec, ${pkgs.swayosd}/bin/swayosd-client --brightness=raise"
@@ -154,7 +173,7 @@
 				", xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=mute-toggle"
 
 				# pyprland
-				"$mainMod, T, exec, pypr toggle terminal"
+				"$mainMod, T, exec, ${inputs.pyprland.packages.${pkgs.system}.pyprland}/bin/pypr toggle terminal"
 		
 				# Move focus with mainMod + arrow keys
 				"$mainMod, left, movefocus, l"

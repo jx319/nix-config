@@ -1,95 +1,38 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 
 {
   imports = [
     inputs.ags.homeManagerModules.default
 
+    ./packages
+
     ./ags
-    ./eza
-    ./swayfx
-    ./shell
-    ./tofi
-    ./zellij
-    ./swayosd
-    ./git
-    ./gitui
-    ./hyprland
-    ./eww
-    ./helix
-    ./kitty
-    ./wofi
     ./alacritty
     ./dunst
+    ./eww
+    ./eza
+    ./git
+    ./gitui
+    ./gtk
+    ./helix
+    ./hyprland
     ./kdeconnect
+    ./kitty
+    ./obs
+    ./qt
     ./qutebrowser
+    ./shell
+    ./swayfx
+    ./swayosd
+    ./tofi
+    ./virt-manager
+    ./wofi
+    ./zellij
   ];
 
   home = {
     username = "jonas";
     homeDirectory = "/home/jonas";
-    packages = with pkgs; [
-      (catppuccin-kvantum.override {
-        accent = "Green";
-        variant = "Mocha";
-      })
-      nil
-    ];
-  };
-
-  programs.home-manager.enable = true;
-  programs.git.enable = true;
-  
-  gtk = {
-  	enable = true;
-	  theme = {
-  		name = "Catppuccin-Mocha-Standard-Green-Dark";
-	    package = pkgs.catppuccin-gtk.override {
-		    accents = [ "green" ];
-        size = "standard";
-		    variant = "mocha";
-  		};
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.catppuccin-papirus-folders.override {
-        flavor = "mocha";
-        accent = "green";
-      };
-    };
-    font = {
-      name = "JetBrainsMono Nerd Font Propo";
-    };
-    cursorTheme = {
-      name = "Catppuccin-Mocha-Green-Cursors";
-      package = pkgs.catppuccin-cursors.mochaGreen;
-      size = 32;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme = "qtct";
-    style = {
-      name = "kvantum";
-    };
-  };
-  xdg.configFile."Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" { General.theme = "Catppuccin-Mocha-Green"; };
-  xdg.configFile."qt5ct/qt5ct.conf".source = (pkgs.formats.ini {}).generate "qt5ct.conf" {
-    Appearance = {
-      icon_theme = "Papirus-Dark";
-      style = "kvantum";
-    };
-    Fonts = {
-      fixed = ''"JetBrainsMono Nerd Font,12,-1,5,50,0,0,0,0,0,Regular"'';
-      general = ''"JetBrainsMono Nerd Font Propo,12,-1,5,50,0,0,0,0,0,Regular"'';
-    };
-  };
-  
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
   };
 
   # Nicely reload system units when changing configs

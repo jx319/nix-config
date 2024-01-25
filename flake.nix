@@ -37,16 +37,16 @@
       nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; }; 
-	      modules = [ 
+	      modules = let nixosConfiguration = "nixos"; in [
           
-          ./nixos/configuration.nix
+          ./host/nixos/configuration.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               users.jonas = import ./home;
-              extraSpecialArgs = { inherit inputs; };
+              extraSpecialArgs = { inherit inputs nixosConfiguration; };
             };
           }
         ];
