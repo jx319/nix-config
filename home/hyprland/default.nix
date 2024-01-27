@@ -147,6 +147,7 @@
 				"float,class:(xdg-desktop-portal-gtk)"
 				"float,class:(polkit-kde-authentication-agent-1)"
 				"float,class:(nwg-displays)"
+				"float,class:(org.kde.kdeconnect.handler)"
 			];
 			
 			# keybinds
