@@ -1,7 +1,35 @@
 { inputs, pkgs, ... }: 
 
 {
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = 
+	let
+		lockscreen = pkgs.writeShellScript "lockscreen" ''
+			${pkgs.swaylock-effects}/bin/swaylock \
+								--screenshots \
+								--clock \
+								\
+								--indicator \
+								--indicator-radius 100 \
+								--indicator-thickness 7 \
+								\
+								--effect-blur 7x10 \
+								--effect-vignette 0.5:0.5 \
+								\
+								--ring-color 00000000 \
+								--key-hl-color a6e3a1ff \
+								--text-color a6e3a1ff \
+								--line-color 00000000 \
+								\
+								--inside-color 00000088 \
+								--inside-ver-color 89b4faff \
+								--inside-wrong-color ec88a6ff \
+								\
+								--separator-color 00000000 \
+								--fade-in 0.2 \
+								--font "JetBrainsMono Nerd Font"
+		'';
+	in
+	{
   	enable = true;
 		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
@@ -136,25 +164,9 @@
 				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"
 				"$mainMod, B, exec, flatpak run org.prismlauncher.PrismLauncher"
-				"$mainMod, L, exec, ${pkgs.swaylock-effects}/bin/swaylock \
-					--screenshots \
-					--clock \
-					--indicator \
-					--indicator-radius 100 \
-					--indicator-thickness 7 \
-					--effect-blur 7x10 \
-					--effect-vignette 0.5:0.5 \
-					--ring-color 00000000 \
-					--key-hl-color a6e3a1ff \
-					--line-color 00000000 \
-					--inside-color 00000088 \
-					--separator-color 00000000 \
-					--fade-in 0.2"
-				
-				", print, exec, ${pkgs.grim}/bin/grim -g \"$(${pkgs.slurp}/bin/slurp \
-					-c 00000000 \
-					-b a6e3a1a0 -d \
-					-F 'JetBrainsMono Nerd Font')\" - | ${pkgs.swappy}/bin/swappy -f - "
+				"$mainMod, L, exec, ${lockscreen}"
+			
+				'', print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -c 00000000 -b a6e3a1a0 -d -F 'JetBrainsMono Nerd Font')" - | ${pkgs.swappy}/bin/swappy -f -''
 			
 				"SHIFT, print, exec, ${pkgs.grim}/bin/grim - | ${pkgs.swappy}/bin/swappy -f -"
 				
