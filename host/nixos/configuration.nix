@@ -112,6 +112,10 @@
     };
         
     flatpak.enable = true;
+
+    gvfs.enable = true;
+
+    tumbler.enable = true;
     
     pipewire = {
       enable = true;
@@ -188,7 +192,18 @@
       package = pkgs.swayfx;
     };
 
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [
+        thunar-volman
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+      ];
+    };
+       
     dconf.enable = true;
+
+    xfconf.enable = true;
   };
   
   users.users.jonas = {

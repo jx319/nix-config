@@ -17,7 +17,5 @@
     python3
     signal-desktop
     vitetris
-    xfce.thunar
-    xfce.thunar-volman
   ];
 }

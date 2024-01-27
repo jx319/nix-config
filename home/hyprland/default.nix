@@ -157,7 +157,7 @@
 				"$mainMod, Q, exec, ${pkgs.alacritty}/bin/alacritty"
 				"$mainMod, C, killactive"
 				"$mainMod, M, exit"
-				"$mainMod, E, exec, ${pkgs.libsForQt5.dolphin}/bin/dolphin"
+				"$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 				"$mainMod, V, togglefloating"
 				"$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
 				"$mainMod, X, pseudo," # dwindle
