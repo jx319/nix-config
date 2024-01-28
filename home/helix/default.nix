@@ -3,7 +3,7 @@
     enable = true;
     package = inputs.helix.packages.${pkgs.system}.default;
     settings = {
-      theme = "catppuccin_mocha_transparent";
+      theme = "catppuccin_mocha";
       
       editor = {
         cursor-shape = {
