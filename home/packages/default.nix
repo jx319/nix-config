@@ -10,7 +10,6 @@
     libreoffice
     libsForQt5.kmenuedit
     mpv
-    nil
     packwiz
     pods
     polychromatic

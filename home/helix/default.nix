@@ -19,6 +19,13 @@
         "ui.background" = "none";
       };
     };
+
+    extraPackages = with pkgs; [
+      rust-analyzer
+      marksman
+      nil
+      nodePackages.typescript-language-server
+    ];
   };
   
 }
