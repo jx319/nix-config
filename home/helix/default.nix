@@ -25,6 +25,7 @@
       marksman
       nil
       nodePackages.typescript-language-server
+      vscode-langservers-extracted
     ];
   };
   
