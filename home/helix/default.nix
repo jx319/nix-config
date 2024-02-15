@@ -9,8 +9,29 @@
         cursor-shape = {
           insert = "bar";
         };
-      };
+        
+        auto-save = true;
+        bufferline = "multiple";
 
+        statusline = {
+          right = [
+            "diagnostics"
+            "selections"
+            "register" 
+            "position"
+            "position-percentage"
+            "file-encoding"
+          ];
+        };
+        
+        lsp = {
+          display-inlay-hints = true;
+        };
+
+        indent-guides = {
+          render = true;
+        };
+      };
     };
 
     themes = {
