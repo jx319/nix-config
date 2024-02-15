@@ -120,6 +120,7 @@
 			dwindle = {
 			    pseudotile = true; 
 					preserve_split = true;
+					no_gaps_when_only = true;
 			};
 
 			master = {
