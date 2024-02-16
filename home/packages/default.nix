@@ -16,5 +16,8 @@
     python3
     signal-desktop
     vitetris
+    amberol
+    pavucontrol
+    qpwgraph
   ];
 }
