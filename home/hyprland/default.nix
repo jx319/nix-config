@@ -33,9 +33,7 @@
   	enable = true;
 		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
-		plugins = [
-			inputs.hycov.packages.${pkgs.system}.hycov
-		];
+		plugins = [ ];
 
 		settings = {
 			# catppuccin colors
@@ -57,7 +55,6 @@
 				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
 				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
 				"${pkgs.swayosd}/bin/swayosd-server"
-				"${inputs.pyprland.packages.${pkgs.system}.pyprland}/bin/pypr"
 			];
 
 			env = [
@@ -136,12 +133,7 @@
 			};
 			
 			# window rules
-			windowrule = [
-				"float,^(alacritty-scratchpad)$"
-				"workspace special:scratch_term silent,^(alacritty-scratchpad)$"
-				"size 75% 60%,^(alacritty-scratchpad)$"
-				"move 12% -200%,^(alacritty-scratchpad)$"
-			];
+			windowrule = [ ];
 			
 			windowrulev2 = [
 				"float,class:(prismlauncher)"
@@ -186,9 +178,6 @@
 				", xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=lower"
 				", xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=mute-toggle"
 
-				# pyprland
-				"$mainMod, T, exec, ${inputs.pyprland.packages.${pkgs.system}.pyprland}/bin/pypr toggle terminal"
-		
 				# Move focus with mainMod + arrow keys
 				"$mainMod, left, movefocus, l"
 				"$mainMod, right, movefocus, r"
@@ -222,9 +211,6 @@
 				# Scroll through existing workspaces with mainMod + scroll
 				"$mainMod, mouse_down, workspace, e+1"
 				"$mainMod, mouse_up, workspace, e-1"
-
-				# hycov 
-				"ALT, TAB, hycov:toggleoverview"
 			];
 
 			bindm = [
@@ -233,37 +219,6 @@
 			];
 		};
 
-		extraConfig = ''
-			plugin {
-				hycov {
-					enable_hotarea = 0
-					enable_alt_release_exit = 1
-					alt_toggle_auto_next = 1
-				}
-			}
-		'';
+		extraConfig = '''';
 	};
-
-	# pyprland
-	xdg.configFile."hypr/pyprland.toml".source = (pkgs.formats.toml {}).generate "pyprland.toml" {
-		pyprland = {
-			plugins = [
-				"scratchpads"
-				"toggle_dpms"
-			];
-		};
-
-		scratchpads = {
-			terminal = {
-				animation = "fromTop";
-				command = "alacritty --class alacritty-scratchpad";
-				class = "alacritty-scratchpad";
-				size = "75% 60%";
-			};
-		};
-	};
-
-	home.packages = with pkgs; [
-		inputs.pyprland.packages.${system}.pyprland
-	];
 }

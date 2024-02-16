@@ -13,14 +13,7 @@
       url = "github:hyprwm/Hyprland";
       #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
-
-    pyprland.url = "github:hyprland-community/pyprland";
-    
-    hycov = {
-      url = "github:DreamMaoMao/hycov";
-      inputs.hyprland.follows = "hyprland";
-    };
-
+ 
     ags.url = "github:Aylur/ags";
     
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
