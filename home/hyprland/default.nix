@@ -153,19 +153,17 @@
 				"$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 				"$mainMod, V, togglefloating"
 				"$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
-				"$mainMod, X, pseudo," # dwindle
-				"$mainMod, J, togglesplit" # dwindle
+				"$mainMod, S, togglesplit" # dwindle
 				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"
 				"$mainMod, B, exec, flatpak run org.prismlauncher.PrismLauncher"
-				"$mainMod, L, exec, ${lockscreen}"
+				"$mainMod, escape, exec, ${lockscreen}"
 			
 				'', print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -c 00000000 -b a6e3a1a0 -d -F 'JetBrainsMono Nerd Font')" - | ${pkgs.swappy}/bin/swappy -f -''
 			
 				"SHIFT, print, exec, ${pkgs.grim}/bin/grim - | ${pkgs.swappy}/bin/swappy -f -"
 				
 				"$mainMod, A, exec, flatpak run org.prismlauncher.PrismLauncher -l \"Additive(1)\""
-				"$mainMod, S, exec, flatpak run org.prismlauncher.PrismLauncher -l \"SkyClient\""
 				"$mainMod, P, exec, ${inputs.nwg-displays.packages.${pkgs.system}.default}/bin/nwg-displays"
 				"$mainMod, D, exec, ${pkgs.qutebrowser}/bin/qutebrowser"
 		
@@ -178,36 +176,32 @@
 				", xf86audiolowervolume, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=lower"
 				", xf86audiomute, exec, ${pkgs.swayosd}/bin/swayosd-client --output-volume=mute-toggle"
 
-				# Move focus with mainMod + arrow keys
+				"$mainMod, H, movefocus, l"
+				"$mainMod, J, movefocus, d"
+				"$mainMod, K, movefocus, u"
+				"$mainMod, L, movefocus, r"
+
 				"$mainMod, left, movefocus, l"
-				"$mainMod, right, movefocus, r"
-				"$mainMod, up, movefocus, u"
 				"$mainMod, down, movefocus, d"
+				"$mainMod, up, movefocus, u"
+				"$mainMod, right, movefocus, r"
 
-				# Switch workspaces with mainMod + [0-9]
-				"$mainMod, 1, workspace, 1"
-				"$mainMod, 2, workspace, 2"
-				"$mainMod, 3, workspace, 3"
-				"$mainMod, 4, workspace, 4"
-				"$mainMod, 5, workspace, 5"
-				"$mainMod, 6, workspace, 6"
-				"$mainMod, 7, workspace, 7"
-				"$mainMod, 8, workspace, 8"
-				"$mainMod, 9, workspace, 9"
-				"$mainMod, 0, workspace, 10"
+				"$mainMod SHIFT, H, movewindow, l"
+				"$mainMod SHIFT, J, movewindow, d"
+				"$mainMod SHIFT, K, movewindow, u"
+				"$mainMod SHIFT, L, movewindow, r"
 
-				# Move active window to a workspace with mainMod + SHIFT + [0-9]
-				"$mainMod SHIFT, 1, movetoworkspace, 1"
-				"$mainMod SHIFT, 2, movetoworkspace, 2"
-				"$mainMod SHIFT, 3, movetoworkspace, 3"
-				"$mainMod SHIFT, 4, movetoworkspace, 4"
-				"$mainMod SHIFT, 5, movetoworkspace, 5"
-				"$mainMod SHIFT, 6, movetoworkspace, 6"
-				"$mainMod SHIFT, 7, movetoworkspace, 7"
-				"$mainMod SHIFT, 8, movetoworkspace, 8"
-				"$mainMod SHIFT, 9, movetoworkspace, 9"
-				"$mainMod SHIFT, 0, movetoworkspace, 10"
+				"$mainMod ALT, J, splitratio, -0.1"
+				"$mainMod ALT, K, splitratio, 0.1"
 
+				# hyprnome workspace switching
+				"$mainMod, 1, exec, ${pkgs.hyprnome}/bin/hyprnome --previous"
+				"$mainMod, 2, exec, ${pkgs.hyprnome}/bin/hyprnome"
+
+				# move active window with hyprnome
+				"$mainMod SHIFT, 1, exec, ${pkgs.hyprnome}/bin/hyprnome --move --previous"
+				"$mainMod SHIFT, 2, exec, ${pkgs.hyprnome}/bin/hyprnome --move"
+				
 				# Scroll through existing workspaces with mainMod + scroll
 				"$mainMod, mouse_down, workspace, e+1"
 				"$mainMod, mouse_up, workspace, e-1"
