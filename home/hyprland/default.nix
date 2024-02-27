@@ -50,11 +50,14 @@
 			exec-once = [
 				"hyprctl setcursor Catppuccin-Mocha-Green-Cursors 32"
 				"${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
-				"${pkgs.hyprpaper}/bin/hyprpaper"
+				"${inputs.ags.packages.${pkgs.system}.ags}/bin/ags"
+				#"${pkgs.hyprpaper}/bin/hyprpaper"
 				"${pkgs.dunst}/bin/dunst"
-				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
-				"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
+				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
+				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
 				"${pkgs.swayosd}/bin/swayosd-server"
+				"sleep 10; ${pkgs.networkmanagerapplet}/bin/nm-applet"
+				"sleep 1; ${pkgs.blueman}/bin/blueman-applet"
 			];
 
 			env = [
@@ -141,6 +144,11 @@
 				"float,class:(polkit-kde-authentication-agent-1)"
 				"float,class:(nwg-displays)"
 				"float,class:(org.kde.kdeconnect.handler)"
+				"float,class:(pavucontrol)"
+			];
+
+			layerrule = [
+				"blur,powermenu"
 			];
 			
 			# keybinds

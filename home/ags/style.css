@@ -1,0 +1,253 @@
+/* based on https://github.com/Aylur/ags/blob/f5c2bbe3f68dd7a5316c3cd77e52076af560cd3e/example/simple-bar/style.css */
+
+
+@keyframes slide-in {
+  from {
+    margin-top: 100em;
+  }
+
+  to {
+    margin-top: 0em;
+  }
+}
+
+window.bar {
+  background-color: #11111b;
+  color: @theme_fg_color;
+  font-size: 16px;
+  transition: 0.3s linear;
+}
+
+window#applauncher {
+  animation: slide-in 1s;
+  border-radius: 1em;
+  border: 0.2em solid @theme_selected_bg_color;
+}
+
+button {
+  min-width: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: transparent;
+}
+
+button:active {
+  background-color: @theme_selected_bg_color;
+}
+
+.trayrevealericon {
+  border-color: #ffffff;
+}
+
+.pill {
+  background-image: radial-gradient(circle farthest-side at left bottom,
+      @theme_selected_bg_color 20%, #89b4fa);
+  color: @theme_bg_color;
+  /* background-color: @theme_bg_color; */
+  border-radius: 2em;
+  margin: 0.4em 0em;
+  padding: 0.3em 0.5em;
+}
+
+.pill :first-child {
+  padding-right: 0.3em;
+}
+
+.pill :last-child {
+  padding-left: 0.3em;
+}
+
+.bar-systray-item {
+  padding: 0;
+}
+
+.workspaces {
+  margin: 0.4em 0em;
+  border-radius: 2em;
+  background-image: radial-gradient(circle farthest-side at left bottom,
+      @theme_selected_bg_color 20%, #89b4fa);
+  /*background-color: @theme_bg_color;*/
+  padding: 0.5em;
+}
+
+.workspaces button {
+  font-size: 0;
+  border: 0.5rem solid #40404d;
+  border-radius: 50%;
+  min-height: 0.2rem;
+  min-width: 0.2rem;
+  padding: 0.1rem;
+  margin: 0rem 0.2rem;
+  transition: 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.workspaces button.focused {
+  border-color: #11111b;
+  background-color: #11111b;
+  min-width: 1rem;
+  border-radius: 1rem;
+}
+
+window.bar .launcherbutton {
+  padding-left: 0em;
+  padding-right: 0em;
+}
+
+window.bar .launcherbutton:hover {
+  border-bottom: unset;
+}
+
+label {
+  font-weight: bold;
+}
+
+
+.client-title {
+  color: @theme_selected_bg_color;
+}
+
+progress,
+highlight {
+  min-height: 0.5em;
+  border-radius: 1em;
+  padding: 0em;
+}
+
+slider {
+  background-color: transparent;
+  border: 0 solid transparent;
+  box-shadow: none;
+  padding: 0em;
+}
+
+.brightness {
+  min-width: 8em;
+}
+
+trough {
+  border-radius: 1em;
+}
+
+window#powermenu .powermenuBar {
+  background-color: @theme_bg_color;
+  border-radius: 1em;
+  border: 0.2em solid #40404d;
+}
+
+window#powermenu button {
+  border-bottom: unset;
+  border-radius: 1em;
+}
+
+window#powermenu .powermenuIcon {
+  color: #40404d;
+}
+
+
+window#notifications {
+  all: unset;
+}
+
+window#notifications box.notifications {
+  padding: .5em;
+}
+
+.icon {
+  min-width: 68px;
+  min-height: 68px;
+  margin-right: 1em;
+}
+
+.icon image {
+  font-size: 58px;
+  /* to center the icon */
+  margin: 5px;
+  color: @theme_fg_color;
+}
+
+.icon box {
+  min-width: 68px;
+  min-height: 68px;
+  border-radius: 7px;
+}
+
+.notification {
+  min-width: 35em;
+  border-radius: 1em;
+  padding: 1em;
+  margin: .5em;
+  border: 0.2em solid @theme_selected_bg_color;
+  background-color: @theme_bg_color;
+}
+
+.notification.critical {
+  border: 0.2em solid #f38ba8;
+}
+
+.notification.low {
+  border: 0.2em solid #40404d;
+}
+
+.title {
+  color: @theme_fg_color;
+  font-size: 1.4em;
+}
+
+.body {
+  color: @theme_unfocused_fg_color;
+}
+
+.actions .action-button {
+  margin: 0 .4em;
+  margin-top: .8em;
+}
+
+.actions .action-button:first-child {
+  margin-left: 0;
+}
+
+.actions .action-button:last-child {
+  margin-right: 0;
+}
+
+window.quicksettings {
+  min-width: 40em;
+}
+
+window.quicksettings .quicksettingsitem {
+  background-color: @theme_bg_color;
+  font-size: 1.4em;
+  padding: 1em;
+  border-radius: 1em;
+  border: 0.2em solid @theme_selected_bg_color;
+  min-width: 20em;
+}
+
+window.quicksettings .quicksettingsitem button {
+  padding: 0.5em;
+  border-radius: 0.5em;
+  background-color: #40404d;
+}
+
+window.quicksettings .quicksettingsitem button box box :last-child {
+  margin-left: 1em;
+}
+
+window.quicksettings .quicksettingsitem button:hover {
+  border-bottom: unset;
+}
+
+window.quicksettings .quicksettingsitem button.active {
+  background-color: @theme_selected_bg_color;
+  color: #11111b;
+}
+
+window.quicksettings .quicksettingsitem slider,
+window.quicksettings .quicksettingsitem progress,
+window.quicksettings .quicksettingsitem highlight,
+window.quicksettings .quicksettingsitem trough {
+  min-height: 1.5em;
+  border-radius: 0.5em;
+  padding: 0em;
+  margin: 0em;
+}
