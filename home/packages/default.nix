@@ -8,7 +8,8 @@
     hyprpicker
     ktorrent
     libreoffice
-    libsForQt5.kmenuedit
+    # libsForQt5.kmenuedit
+    kdePackages.kmenuedit
     mpv
     packwiz
     pods

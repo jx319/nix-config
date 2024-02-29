@@ -100,9 +100,9 @@
       displayManager.sddm = {
         enable = true;
         wayland.enable = true;
-        theme = "${import ../../pkgs/catppuccin-sddm { inherit pkgs; }}";
+        # theme = "${import ../../pkgs/catppuccin-sddm { inherit pkgs; }}";
       };
-      desktopManager.plasma5 = {
+      desktopManager.plasma6 = {
         enable = true;
       };
     };
@@ -213,6 +213,15 @@
   };
   
   environment = {
+    plasma6 = {
+      excludePackages = with pkgs.kdePackages; [
+        elisa
+        kate
+        kwallet
+        kwalletmanager
+        plasma-systemmonitor          
+      ];
+    };
     systemPackages = with pkgs; [
       firefox
       librewolf
@@ -231,9 +240,9 @@
         flavor = "mocha";
         accent = "green";
       })
-      libsForQt5.qt5.qtsvg
-      libsForQt5.qt5.qtgraphicaleffects
-      libsForQt5.qt5.qtquickcontrols2
+      # libsForQt5.qt5.qtsvg
+      # libsForQt5.qt5.qtgraphicaleffects
+      # libsForQt5.qt5.qtquickcontrols2
       openrazer-daemon
     ];
     sessionVariables = {
