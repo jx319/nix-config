@@ -20,5 +20,6 @@
     amberol
     pavucontrol
     qpwgraph
+    tangram
   ];
 }
