@@ -3,7 +3,7 @@ import { monitorFile, timeout, execAsync } from 'resource:///com/github/Aylur/ag
 import { applauncher } from "./applauncher.js";
 import { PowerMenu } from "./powermenu.js";
 // import { notificationPopup } from './notificationPopups.js';
-import { QuickSettings } from "./quicksettings/quicksettings.js";
+// import { QuickSettings } from "./quicksettings/quicksettings.js";
 
 monitorFile(
     `${App.configDir}/style.css`,
@@ -20,6 +20,6 @@ export default {
         applauncher,
         PowerMenu(),
         // notificationPopup,
-        QuickSettings()
+        // QuickSettings()
     ],
 };

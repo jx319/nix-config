@@ -8,7 +8,7 @@ export const PowerMenu = () => Widget.Window({
   anchor: [ "top", "bottom", "left", "right" ],
   layer: "overlay",
   exclusivity: "ignore",
-  popup: true,
+  // popup: true,
   visible: false,
   keymode: "exclusive",
   child: Widget.CenterBox({
@@ -56,4 +56,4 @@ export const PowerMenu = () => Widget.Window({
       })
     })
   })
-});
+}).keybind("Escape", () => App.closeWindow("powermenu"));
