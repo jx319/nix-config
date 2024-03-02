@@ -9,23 +9,32 @@ import { execAsync, lookUpIcon } from 'resource:///com/github/Aylur/ags/utils.js
 import { Tray } from '../systray/tray.js';
 import { VolumeIndicator, NetworkIndicator, BluetoothIndicator } from "../indicators/indicatorIcons.js";
 
+const WorkspaceButtonArray = (ws) => {
+    return ws
+        .sort((a, b) => {
+            return a.id - b.id; // sort by id to prevent higher values from appearing first
+        })
+        .map(({ id }) => id > 0 ? Widget.Button({
+            on_clicked: () => Hyprland.messageAsync(`dispatch workspace ${id}`),
+            expand: false,
+            class_name: Hyprland.active.workspace.bind('id')
+                 .transform(i => {
+                     return `${i === id ? 'focused' : ''}`
+                 }),
+        }) : null); // ignore special workspaces
+}
+
 const Workspaces = () => Widget.Box({
     class_name: 'workspaces',
-    children: Hyprland.bind("workspaces")
-        .transform(ws => {
-        return ws
-            .sort((a, b) => {
-                return a.id - b.id; // sort by id to prevent higher values from appearing first
-            })
-            .map(({ id }) => id > 0 ? Widget.Button({
-                on_clicked: () => Hyprland.messageAsync(`dispatch workspace ${id}`),
-                expand: false,
-                class_name: Hyprland.active.workspace.bind('id')
-                     .transform(i => {
-                         return `${i === id ? 'focused' : ''}`
-                     }),
-            }) : null); // ignore special workspaces
-    })
+    setup: self => {
+        self.hook(Hyprland, self => {
+            self.children = WorkspaceButtonArray(Hyprland.workspaces)
+        }, "workspace-added")
+
+        self.hook(Hyprland, self => {
+            self.children = WorkspaceButtonArray(Hyprland.workspaces)
+        }, "workspace-removed")
+    }       
 });
 
 const AppIcon = () => Widget.Icon().hook(Hyprland, self => {
