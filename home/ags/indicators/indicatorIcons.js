@@ -1,6 +1,7 @@
 const network = await Service.import('network');
 const bluetooth = await Service.import('bluetooth');
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
+import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
 
 export const VolumeIndicator = () => Widget.Icon().hook(Audio, self => {
     if (!Audio.speaker)
@@ -59,3 +60,43 @@ export const BluetoothIndicator = () => Widget.Icon({
     icon: bluetooth.bind('enabled').transform(on =>
         `bluetooth-${on ? 'active' : 'disabled'}-symbolic`),
 })
+
+export const MediaIndicator = () => Widget.Icon({
+    setup: self => {
+        self.hook(Mpris, self => {
+                if (Mpris.players[0]) {
+                    const { play_back_status } = Mpris.players[0];
+                    switch(play_back_status) {
+                        case "Playing":
+                            self.icon = `${App.configDir}/icons/pause-symbolic.svg`;
+                            break;
+                        case "Paused":
+                            self.icon = `${App.configDir}/icons/play-symbolic.svg`;
+                            break;
+                        case "Stopped":
+                            self.icon = `${App.configDir}/icons/stop-symbolic.svg`
+                            break;
+                    }
+                
+                }
+        }, 'player-changed')
+    }
+})
+
+export const MediaIndicatorLabel = () => Widget.Box({
+    children: [
+        MediaIndicator(),
+        Widget.Label('-').hook(Mpris, self => {
+            if (Mpris.players[0]) {
+                const { track_artists, track_title } = Mpris.players[0];
+                self.label = (track_artists[0] || track_title) ? `${track_artists.join(', ')} - ${track_title}` : '';
+            } else {
+                self.label = '';
+            }
+            self.truncate = 'end';
+            self.max_width_chars = 50;
+
+        }, 'player-changed')
+    ]
+})
+

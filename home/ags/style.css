@@ -46,7 +46,7 @@ button:active {
   /* background-color: @theme_bg_color; */
   border-radius: 2em;
   margin: 0.4em 0em;
-  padding: 0.3em 0.5em;
+  padding: 0em 0.5em;
 }
 
 .pill :first-child {
@@ -55,6 +55,12 @@ button:active {
 
 .pill :last-child {
   padding-left: 0.3em;
+}
+
+.pill box label {
+  margin: 0em;
+  padding: 0em;
+  min-height: 0em;
 }
 
 .bar-systray-item {
@@ -152,6 +158,10 @@ window#notifications box.notifications {
   padding: .5em;
 }
 
+window.notifications box box {
+  transition: linear 200ms;
+}
+
 .icon {
   min-width: 68px;
   min-height: 68px;
@@ -210,6 +220,18 @@ window#notifications box.notifications {
   margin-right: 0;
 }
 
+.time {
+  padding-top: 0.65em;
+  margin: 0em 0.1em;
+}
+
+.close-button {
+  border-radius: 50%;
+  padding: 0em;
+  min-height: 2.5em;
+  min-width: 2.5em;
+}
+
 window.quicksettings {
   min-width: 40em;
 }
@@ -250,4 +272,27 @@ window.quicksettings .quicksettingsitem trough {
   border-radius: 0.5em;
   padding: 0em;
   margin: 0em;
+}
+
+window.notificationcenter {}
+
+window.notificationcenter .notificationcenterbox {
+  background-color: @theme_bg_color;
+  border-radius: 1em;
+  border: 0.2em solid #40404d;
+  padding: 0.5em;
+  min-height: 50em;
+  min-width: 40em;
+}
+
+window.notificationcenter .notificationcenterbox .top-bar {
+  font-size: 2em;
+  margin: 0.2em;
+  padding-bottom: 0.4em;
+  border-bottom: 0.1em solid #40404d;
+}
+
+window.notificationcenter .notificationcenterbox .top-bar button {
+  padding: 0.1em;
+  border-radius: 0.5em;
 }

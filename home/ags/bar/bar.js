@@ -7,7 +7,7 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Brightness from '../services/brightness.js';
 import { execAsync, lookUpIcon } from 'resource:///com/github/Aylur/ags/utils.js';
 import { Tray } from '../systray/tray.js';
-import { VolumeIndicator, NetworkIndicator, BluetoothIndicator } from "../indicators/indicatorIcons.js";
+import { VolumeIndicator, NetworkIndicator, BluetoothIndicator, MediaIndicatorLabel } from "../indicators/indicatorIcons.js";
 
 const WorkspaceButtonArray = (ws) => {
     return ws
@@ -66,17 +66,24 @@ const ClientTitle = () => Widget.Label({
     wrap: false,
 });
 
-const Clock = () => Widget.Box({
-    class_names: ['clock', "pill"],
-    setup: self => self
-        .poll(1000, self => execAsync(['date', '+%T\|%d.%m.%Y'])
-            .then(date => {
-                date = date.split("|");
-                self.children = [
-                    Widget.Label(date[0]),
-                    Widget.Label(date[1])
-                ]
-            })),
+const Clock = () => Widget.EventBox({
+    on_primary_click: () => {
+        toggleNotificationCenter()
+    },
+    child: Widget.Box({
+        class_names: ['clock', "pill"],
+        spacing: 4,
+        setup: self => self
+            .poll(1000, self => execAsync(['date', '+%T\|%d.%m.%Y'])
+                .then(date => {
+                    date = date.split("|");
+                    self.children = [
+                        Widget.Icon("notification-symbolic"),
+                        Widget.Label(date[0]),
+                        Widget.Label(date[1])
+                    ]
+                })),
+    })
 });
 
 const LauncherButton = () => Widget.Button({
@@ -88,23 +95,18 @@ const LauncherButton = () => Widget.Button({
     }),
 });
 
-const Media = () => Widget.Button({
-    class_names: [ 'media', "pill"],
+const Media = () => Widget.EventBox({
     on_primary_click: () => Mpris.getPlayer('')?.playPause(),
     on_scroll_up: () => Mpris.getPlayer('')?.next(),
     on_scroll_down: () => Mpris.getPlayer('')?.previous(),
     visible: Mpris.bind("players").transform(p => p.length > 0),
-    child: Widget.Label('-').hook(Mpris, self => {
-        if (Mpris.players[0]) {
-            const { track_artists, track_title } = Mpris.players[0];
-            self.label = (track_artists[0] || track_title) ? `${track_artists.join(', ')} - ${track_title}` : '';
-        } else {
-            self.label = '';
-        }
-        self.truncate = 'end';
-        self.max_width_chars = 50;
-
-    }, 'player-changed'),
+    vexpand: false,
+    child: Widget.Box({
+        class_name: "pill",
+        children: [
+            MediaIndicatorLabel()
+        ]
+    })
 });
 
 const PowerButton = () => Widget.Button({
@@ -208,7 +210,7 @@ const Center = () => Widget.Box({
     spacing: 8,
     children: [
         Media(),
-        //Notification(),
+        Clock(),
     ],
 });
 
@@ -220,7 +222,6 @@ const Right = () => Widget.Box({
         ScreenBrightness(),
         Volume(),
         BatteryLabel(),
-        Clock(),
         PowerButton(),
     ],
 });

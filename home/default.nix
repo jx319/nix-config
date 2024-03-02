@@ -8,7 +8,7 @@
 
     ./ags
     ./alacritty
-    ./dunst
+    # ./dunst
     ./eww
     ./eza
     ./git

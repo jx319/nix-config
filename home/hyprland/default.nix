@@ -52,7 +52,7 @@
 				"${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
 				"${inputs.ags.packages.${pkgs.system}.ags}/bin/ags"
 				#"${pkgs.hyprpaper}/bin/hyprpaper"
-				"${pkgs.dunst}/bin/dunst"
+				# "${pkgs.dunst}/bin/dunst"
 				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
 				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
 				"${pkgs.swayosd}/bin/swayosd-server"
