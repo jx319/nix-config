@@ -7,7 +7,8 @@ import Widget from 'resource:///com/github/Aylur/ags/widget.js';
 import Brightness from '../services/brightness.js';
 import { execAsync, lookUpIcon } from 'resource:///com/github/Aylur/ags/utils.js';
 import { Tray } from '../systray/tray.js';
-import { VolumeIndicator, NetworkIndicator, BluetoothIndicator, MediaIndicatorLabel } from "../indicators/indicatorIcons.js";
+import { VolumeIndicator, NetworkIndicator, BluetoothIndicator, MediaIndicatorLabel, NotificationIndicator } from "../indicators/indicators.js";
+const notifications = await Service.import("notifications")
 
 const WorkspaceButtonArray = (ws) => {
     return ws
@@ -67,22 +68,18 @@ const ClientTitle = () => Widget.Label({
 });
 
 const Clock = () => Widget.EventBox({
-    on_primary_click: () => {
-        toggleNotificationCenter()
-    },
+    on_primary_click: () => toggleNotificationCenter(),
+    on_secondary_click: () => notifications.dnd = !notifications.dnd, 
     child: Widget.Box({
         class_names: ['clock', "pill"],
         spacing: 4,
-        setup: self => self
-            .poll(1000, self => execAsync(['date', '+%T\|%d.%m.%Y'])
-                .then(date => {
-                    date = date.split("|");
-                    self.children = [
-                        Widget.Icon("notification-symbolic"),
-                        Widget.Label(date[0]),
-                        Widget.Label(date[1])
-                    ]
-                })),
+        children: [
+            NotificationIndicator(),
+            Widget.Label()
+                .poll(1000, self => {
+                    self.label = Utils.exec(`date "+%T\ %d.%m.%y"`);
+                })
+        ],
     })
 });
 

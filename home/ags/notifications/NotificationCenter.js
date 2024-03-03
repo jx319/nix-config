@@ -1,7 +1,8 @@
 import Widget from 'resource:///com/github/Aylur/ags/widget.js';
-import { timeout } from 'resource:///com/github/Aylur/ags/utils.js';
 import { Animated } from './popups.js';
+import { NotificationIndicator } from '../indicators/indicators.js';
 const notifications = await Service.import("notifications")
+import UnreadNotifications from "../services/unread_notifications.js";
 
 const NotificationList = () => {
     const map = new Map
@@ -13,6 +14,10 @@ const NotificationList = () => {
     function remove(_, id) {
         map.get(id)?.dismiss()
         map.delete(id)
+        if(!(map.size > 0)) {
+            print(map.size)
+            UnreadNotifications.unread_notifications = false;
+        }
     }
 
     return box
@@ -24,6 +29,7 @@ const NotificationList = () => {
                 const w = Animated(id)
                 map.set(id, w)
                 box.children = [w, ...box.children]
+                UnreadNotifications.unread_notifications = true;
             }
         }, "notified")
         .hook(notifications, remove, "closed")
@@ -41,8 +47,7 @@ const menu_revealer = Widget.Revealer({
         children: [
             Widget.CenterBox({
                 class_name: "top-bar",
-                start_widget: Widget.Icon({
-                    icon: "notification-symbolic",
+                start_widget: NotificationIndicator({
                     size: 32,
                     xalign: 0
                 }),
@@ -54,7 +59,8 @@ const menu_revealer = Widget.Revealer({
                     children: [
                         Widget.Button({
                             on_primary_click: () => {
-                                notification_list.children = []
+                                notification_list.children = [];
+                                globalThis.toggleNotificationCenter();
                             },
                             hexpand: false,
                             xalign: 1,
@@ -94,5 +100,6 @@ export const NotificationCenter = () => Widget.Window({
 })
 
 globalThis.toggleNotificationCenter = () => {
+    UnreadNotifications.unread_notifications = false;
     menu_revealer.reveal_child = !menu_revealer.reveal_child 
 }

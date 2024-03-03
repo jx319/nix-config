@@ -2,6 +2,8 @@ const network = await Service.import('network');
 const bluetooth = await Service.import('bluetooth');
 import Audio from 'resource:///com/github/Aylur/ags/service/audio.js';
 import Mpris from 'resource:///com/github/Aylur/ags/service/mpris.js';
+const notifications = await Service.import("notifications");
+import UnreadNotifications from "../services/unread_notifications.js";
 
 export const VolumeIndicator = () => Widget.Icon().hook(Audio, self => {
     if (!Audio.speaker)
@@ -100,3 +102,23 @@ export const MediaIndicatorLabel = () => Widget.Box({
     ]
 })
 
+const get_notification_icon = () => {
+    if(notifications.notifications.length > 0 && UnreadNotifications.unread_notifications)
+        return "notification-new-symbolic";
+    else if(notifications.dnd)
+        return "notifications-disabled-symbolic";
+    else 
+        return "notification-symbolic";
+}
+
+export const NotificationIndicator = (props) => Widget.Icon({
+    ...props,
+    setup: self => {
+        self.hook(notifications, self => {
+            self.icon = get_notification_icon()
+        }, "changed")
+        self.hook(UnreadNotifications, self => {
+            self.icon = get_notification_icon()
+        }, "changed")
+    }
+})

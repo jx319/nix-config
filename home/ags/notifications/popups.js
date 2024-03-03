@@ -81,6 +81,7 @@ export default () => Widget.Window({
     name: `notifications`,
     anchor: [ "top" ],
     class_name: "notifications",
+    layer: "overlay",
     child: Widget.Box({
         css: "padding: 2px;",
         child: PopupList(),
