@@ -25,6 +25,9 @@
     
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
 
+    catppuccin-vsc.url = "https://flakehub.com/f/catppuccin/vscode/*.tar.gz";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     nwg-displays.url = "github:nwg-piotr/nwg-displays";
 
     helix.url = "github:helix-editor/helix";

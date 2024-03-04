@@ -145,6 +145,7 @@
 				"float,class:(nwg-displays)"
 				"float,class:(org.kde.kdeconnect.handler)"
 				"float,class:(pavucontrol)"
+				"float,class:(codium)"
 			];
 
 			layerrule = [

@@ -28,6 +28,7 @@
     ./swayosd
     ./tofi
     ./virt-manager
+    ./vscode
     ./wofi
     ./zellij
   ];
