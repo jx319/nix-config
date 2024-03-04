@@ -149,6 +149,8 @@
 
 			layerrule = [
 				"blur,powermenu"
+				"blur,anyrun"
+				"ignorezero,anyrun"
 			];
 			
 			# keybinds
@@ -160,7 +162,8 @@
 				"$mainMod, M, exit"
 				"$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 				"$mainMod, V, togglefloating"
-				"$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
+				# "$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
+				"$mainMod, R, exec, ${inputs.anyrun.packages.${pkgs.system}.default}/bin/anyrun"
 				"$mainMod, S, togglesplit" # dwindle
 				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"

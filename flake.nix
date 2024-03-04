@@ -15,6 +15,11 @@
     };
  
     ags.url = "github:Aylur/ags";
+
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
     

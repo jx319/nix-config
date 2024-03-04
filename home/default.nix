@@ -3,11 +3,13 @@
 {
   imports = [
     inputs.ags.homeManagerModules.default
+    inputs.anyrun.homeManagerModules.default
 
     ./packages
 
     ./ags
     ./alacritty
+    ./anyrun
     # ./dunst
     ./eww
     ./eza

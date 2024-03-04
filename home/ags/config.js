@@ -1,6 +1,5 @@
 import { Bar } from "./bar/bar.js";
 import { monitorFile, timeout, execAsync } from 'resource:///com/github/Aylur/ags/utils.js';
-import { applauncher } from "./applauncher.js";
 import { PowerMenu } from "./powermenu/powermenu.js";
 import notificationPopup from './notifications/popups.js';
 import { NotificationCenter } from "./notifications/NotificationCenter.js";
@@ -31,7 +30,6 @@ export default {
     style: App.configDir + '/style.css',
     windows: [
         Bar(),
-        applauncher,
         PowerMenu(),
         notificationPopup(),
         NotificationCenter()

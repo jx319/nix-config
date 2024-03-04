@@ -65,6 +65,7 @@
   
   nix = {
     settings = {
+      builders-use-substitutes = true;
       experimental-features = [ "nix-command" "flakes" ];
       
       substituters = [
@@ -73,6 +74,7 @@
         "https://cache.nixos.org"
         "https://nixpkgs-wayland.cachix.org"
         "https://ags.cachix.org"
+        "https://anyrun.cachix.org"
         # "nix-community.cachix.org"
       ];
       
@@ -82,6 +84,7 @@
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "ags.cachix.org-1:naAvMrz0CuYqeyGNyLgE010iUiuf/qx6kYrUv3NwAJ8="
+        "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
         # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };

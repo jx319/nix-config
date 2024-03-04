@@ -84,7 +84,7 @@ const Clock = () => Widget.EventBox({
 });
 
 const LauncherButton = () => Widget.Button({
-    onClicked: () => App.toggleWindow("applauncher"),
+    onClicked: () => execAsync("anyrun"),
     class_name: "launcherbutton",
     child: Widget.Icon({
         icon: `${App.configDir}/icons/nix-snowflake.svg`,
