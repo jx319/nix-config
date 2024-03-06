@@ -28,8 +28,10 @@
       jnoortheen.nix-ide
 
       ms-python.python
-      
-      ms-vscode.cpptools-extension-pack
+
+      (ms-vscode.cmake-tools.overrideAttrs (_: { sourceRoot = "extension"; }))
+      ms-vscode.cpptools
+      ms-vscode.cpptools-themes
       
       redhat.java
      	rust-lang.rust-analyzer
