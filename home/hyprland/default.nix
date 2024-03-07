@@ -2,7 +2,8 @@
 
 {
   wayland.windowManager.hyprland = 
-	let
+	let	
+		swww = "${inputs.nixpkgs-wayland.packages.${pkgs.system}.swww}/bin/swww";
 		lockscreen = pkgs.writeShellScript "lockscreen" ''
 			${pkgs.swaylock-effects}/bin/swaylock \
 								--screenshots \
@@ -28,6 +29,29 @@
 								--fade-in 0.2 \
 								--font "JetBrainsMono Nerd Font"
 		'';
+		# https://github.com/LGFae/swww/blob/24cc0c34c3262bee688a21070c7e41e637c03d71/example_scripts/swww_randomize.sh
+		swww_randomize = pkgs.writeShellScript "swww_randomize" ''
+			# This script will randomly go through the files of a directory, setting it
+			# up as the wallpaper at regular intervals
+			#
+			# NOTE: this script is in bash (not posix shell), because the RANDOM variable
+			# we use is not defined in posix
+			sleep 1
+			# This controls (in seconds) when to switch to the next image
+			INTERVAL=300
+
+			while true; do
+				find "$1" -type f \
+					| while read -r img; do
+						echo "$((RANDOM % 1000)):$img"
+					done \
+					| sort -n | cut -d':' -f2- \
+					| while read -r img; do
+						${swww} img --transition-type wipe --transition-angle 45 --transition-fps 60 --transition-step 2 "$img"
+						sleep $INTERVAL
+					done
+			done
+		'';
 	in
 	{
   	enable = true;
@@ -47,14 +71,13 @@
 			];
 
 			# daemons
-			exec-once = [
+			exec-once = 
+			[
 				"hyprctl setcursor Catppuccin-Mocha-Green-Cursors 32"
-				"${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
+				# "${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
 				"${inputs.ags.packages.${pkgs.system}.ags}/bin/ags"
-				#"${pkgs.hyprpaper}/bin/hyprpaper"
-				# "${pkgs.dunst}/bin/dunst"
-				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww daemon"
-				#"${inputs.nixpkgs-wayland.packages.${pkgs.system}.eww-wayland}/bin/eww open bar"
+				"${swww} init"
+				"${swww_randomize} ${./wallpapers}"
 				"${pkgs.swayosd}/bin/swayosd-server"
 				"sleep 10; ${pkgs.networkmanagerapplet}/bin/nm-applet"
 				"sleep 1; ${pkgs.blueman}/bin/blueman-applet"
@@ -159,7 +182,7 @@
 				"blur,anyrun"
 				"ignorezero,anyrun"
 
-				"noanim,wallpaper"
+				"noanim,swww"
 
 				"animation fade,swayosd"
 			];
@@ -240,4 +263,8 @@
 
 		extraConfig = '''';
 	};
+
+	home.packages = [
+		inputs.nixpkgs-wayland.packages.${pkgs.system}.swww
+	];
 }
