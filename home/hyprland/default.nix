@@ -66,69 +66,74 @@
 			];
 
 			input = {		
-				    kb_layout = "de";
-				    follow_mouse = 1;
-				    accel_profile = "flat";
+		    kb_layout = "de";
+		    follow_mouse = 1;
+		    accel_profile = "flat";
 
-				    touchpad = {
-				        natural_scroll = true;
-				    };
+		    touchpad = {
+		        natural_scroll = true;
+		    };
 
-				    sensitivity = 0.3; # -1.0 - 1.0, 0 means no modification.
+		    sensitivity = 0.3; # -1.0 - 1.0, 0 means no modification.
 			};
 
 			
 			general = {
-			    gaps_in = 5;
-			    gaps_out = 10;
-			    border_size = 2;
-			    "col.active_border" = "$green";
-			    "col.inactive_border" = "$surface1";
-			    layout = "dwindle";
+			  gaps_in = 5;
+			  gaps_out = 10;
+			  border_size = 2;
+			  "col.active_border" = "$green";
+			  "col.inactive_border" = "$surface1";
+			  layout = "dwindle";
 			};
 
 			decoration = {
-			    rounding = 10;
-		      drop_shadow = true;
-			    shadow_range = 4;
-			    shadow_render_power = 3;
-			    "col.shadow" = "$surface1";
+		    rounding = 10;
+	      drop_shadow = true;
+		    shadow_range = 4;
+		    shadow_render_power = 3;
+		    "col.shadow" = "$surface1";
 
-					blur = {
-						enabled = true;
-						size = 5;
-						special = true;
-						popups = true;
-					};
+				blur = {
+					enabled = true;
+					size = 10;
+					special = true;
+					popups = true;
+				};
 			};
 
 			animations = {
-			    enabled = true;
+		    enabled = true;
 
-			    bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-											
-			    animation = [
-						"windows, 1, 7, myBezier, slide"
-				    "windowsOut, 1, 7, myBezier, slide"
-				    "border, 1, 10, default"
-				    "borderangle, 1, 8, default"
-				    "fade, 1, 7, default"
-				    "workspaces, 1, 6, default"
-					];
+		    bezier = [
+					"myBezier, 0.05, 0.9, 0.1, 1.05"
+					"easeOutCirc, 0, 0.55, 0.45, 1"
+					"easeOutExpoOvershoot, 0.16, 1, 0.3, 1.2"
+				];
+										
+		    animation = [
+					"windows, 1, 3, easeOutCirc, slide"
+			    "layers, 1, 3, easeOutCirc, slide"
+			    "border, 1, 10, default"
+			    "borderangle, 1, 8, default"
+			    "fade, 1, 5, default"
+					"fadeLayers, 1, 5, default"
+			    "workspaces, 1, 5, default"
+				];
 			};
 
 			dwindle = {
-			    pseudotile = true; 
-					preserve_split = true;
-					no_gaps_when_only = true;
+			  pseudotile = true; 
+				preserve_split = true;
+				no_gaps_when_only = true;
 			};
 
 			master = {
-			    new_is_master = true;
+			  new_is_master = true;
 			};
 
 			gestures = {
-			    workspace_swipe = true;
+			  workspace_swipe = true;
 			};
 			
 			misc = {
@@ -150,8 +155,13 @@
 
 			layerrule = [
 				"blur,powermenu"
+
 				"blur,anyrun"
 				"ignorezero,anyrun"
+
+				"noanim,wallpaper"
+
+				"animation fade,swayosd"
 			];
 			
 			# keybinds
@@ -164,7 +174,6 @@
 				"$mainMod, E, exec, ${pkgs.xfce.thunar}/bin/thunar"
 				"$mainMod, V, togglefloating"
 				# "$mainMod, R, exec, ${pkgs.tofi}/bin/tofi-drun"
-				"$mainMod, R, exec, ${inputs.anyrun.packages.${pkgs.system}.default}/bin/anyrun"
 				"$mainMod, S, togglesplit" # dwindle
 				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"
@@ -217,6 +226,10 @@
 				# Scroll through existing workspaces with mainMod + scroll
 				"$mainMod, mouse_down, workspace, e+1"
 				"$mainMod, mouse_up, workspace, e-1"
+			];
+
+			bindr = [
+				"SUPER, SUPER_L, exec, ${inputs.anyrun.packages.${pkgs.system}.default}/bin/anyrun"
 			];
 
 			bindm = [
