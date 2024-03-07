@@ -14,9 +14,10 @@
         inputs.anyrun.packages.${pkgs.system}.translate
         inputs.anyrun.packages.${pkgs.system}.websearch
       ];
+      y = { fraction = 0.1; };
       width = { fraction = 0.3; };
       hideIcons = false;
-      ignoreExclusiveZones = false;
+      ignoreExclusiveZones = true;
       layer = "overlay";
       hidePluginInfo = false;
       closeOnClick = false;
