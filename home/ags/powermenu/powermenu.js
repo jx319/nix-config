@@ -20,6 +20,17 @@ export const PowerMenu = () => Widget.Window({
           Widget.Button({
             onClicked: () => {
               App.closeWindow("powermenu");
+              Hyprland.message("dispatch exec hyprlock");
+            },
+            child: Widget.Icon({
+              class_name: "powermenuIcon",
+              icon: "lock-symbolic",
+              size: 192
+            })
+          }),
+          Widget.Button({
+            onClicked: () => {
+              App.closeWindow("powermenu");
               execAsync("systemctl suspend");
             },
             child: Widget.Icon({
@@ -29,7 +40,7 @@ export const PowerMenu = () => Widget.Window({
             })
           }),
           Widget.Button({
-            onClicked: () => Hyprland.sendMessage("dispatch exit"),
+            onClicked: () => Hyprland.message("dispatch exit"),
             child: Widget.Icon({
               class_name: "powermenuIcon",
               icon: "system-log-out-symbolic",
