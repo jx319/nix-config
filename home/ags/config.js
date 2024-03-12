@@ -26,7 +26,7 @@ monitorFile(
     },
 );
 
-export default {
+App.config({
     style: App.configDir + '/style.css',
     windows: [
         Bar(),
@@ -35,4 +35,4 @@ export default {
         NotificationCenter()
         // QuickSettings()
     ],
-};
+});
