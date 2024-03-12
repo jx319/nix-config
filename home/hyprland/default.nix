@@ -8,31 +8,6 @@
   wayland.windowManager.hyprland = 
 	let	
 		swww = "${inputs.nixpkgs-wayland.packages.${pkgs.system}.swww}/bin/swww";
-		lockscreen = pkgs.writeShellScript "lockscreen" ''
-			${pkgs.swaylock-effects}/bin/swaylock \
-								--screenshots \
-								--clock \
-								\
-								--indicator \
-								--indicator-radius 100 \
-								--indicator-thickness 7 \
-								\
-								--effect-blur 7x10 \
-								--effect-vignette 0.5:0.5 \
-								\
-								--ring-color 00000000 \
-								--key-hl-color a6e3a1ff \
-								--text-color a6e3a1ff \
-								--line-color 00000000 \
-								\
-								--inside-color 00000088 \
-								--inside-ver-color 89b4faff \
-								--inside-wrong-color ec88a6ff \
-								\
-								--separator-color 00000000 \
-								--fade-in 0.2 \
-								--font "JetBrainsMono Nerd Font"
-		'';
 		# https://github.com/LGFae/swww/blob/24cc0c34c3262bee688a21070c7e41e637c03d71/example_scripts/swww_randomize.sh
 		swww_randomize = pkgs.writeShellScript "swww_randomize" ''
 			# This script will randomly go through the files of a directory, setting it
