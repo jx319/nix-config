@@ -13,12 +13,14 @@
       url = "github:hyprwm/Hyprland";
       #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
+    hyprlock.url = "github:hyprwm/hyprlock";
  
     ags.url = "github:Aylur/ags";
 
+    nixpkgs-anyrun.url = "github:nixos/nixpkgs?rev=3030f185ba6a4bf4f18b87f345f104e6a6961f34";
     anyrun = {
       url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-anyrun"; # don't rebuild anyrun every time nixpkgs updates
     };
     
     nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
