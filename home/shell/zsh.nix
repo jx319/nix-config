@@ -9,7 +9,9 @@
       pw = "packwiz";
     };
 
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
 
     autocd = true;
 

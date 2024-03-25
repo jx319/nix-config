@@ -98,15 +98,16 @@
       pkgs.swayosd
     ];
 
+    desktopManager.plasma6 = {
+      enable = true;
+    };
+
     xserver = {
       enable = true;
       displayManager.sddm = {
         enable = true;
         wayland.enable = true;
         # theme = "${import ../../pkgs/catppuccin-sddm { inherit pkgs; }}";
-      };
-      desktopManager.plasma6 = {
-        enable = true;
       };
     };
     
