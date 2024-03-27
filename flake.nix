@@ -4,6 +4,7 @@
   inputs = {
     # Nixpkgs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-old-pipewire.url = "github:nixos/nixpkgs?rev=68befa13bb19eff9aa59d124b6d5801b99e26bc2"; # no audio in newest PW/WP
 
     # Home manager
     home-manager.url = "github:nix-community/home-manager";

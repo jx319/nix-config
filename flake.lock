@@ -688,6 +688,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-old-pipewire": {
+      "locked": {
+        "lastModified": 1710309744,
+        "narHash": "sha256-aKXoqJ1e8UWkM1xtYS0XiyC5kVet3ajV/FC2cBoYx5M=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "68befa13bb19eff9aa59d124b6d5801b99e26bc2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "68befa13bb19eff9aa59d124b6d5801b99e26bc2",
+        "type": "github"
+      }
+    },
     "nixpkgs-wayland": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -918,6 +934,7 @@
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_9",
         "nixpkgs-anyrun": "nixpkgs-anyrun",
+        "nixpkgs-old-pipewire": "nixpkgs-old-pipewire",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "nwg-displays": "nwg-displays"
       }
