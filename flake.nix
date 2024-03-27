@@ -14,6 +14,7 @@
       #inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
     hyprlock.url = "github:hyprwm/hyprlock";
+    hypridle.url = "github:hyprwm/hypridle";
  
     ags.url = "github:Aylur/ags";
 
