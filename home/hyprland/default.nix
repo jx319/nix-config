@@ -183,7 +183,7 @@
 				"$mainMod, F, exec, ${pkgs.librewolf}/bin/librewolf"
 				"$mainMod, G, fullscreen"
 				"$mainMod, B, exec, flatpak run org.prismlauncher.PrismLauncher"
-				"$mainMod, escape, exec, ${inputs.hyprlock.packages.${pkgs.system}.hyprlock}/bin/hyprlock"
+				"$mainMod, escape, exec, loginctl lock-session"
 			
 				'', print, exec, ${pkgs.grim}/bin/grim -g "$(${pkgs.slurp}/bin/slurp -c 00000000 -b a6e3a1a0 -d -F 'JetBrainsMono Nerd Font')" - | ${pkgs.swappy}/bin/swappy -f -''
 			

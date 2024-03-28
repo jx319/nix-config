@@ -20,7 +20,7 @@ export const PowerMenu = () => Widget.Window({
           Widget.Button({
             onClicked: () => {
               App.closeWindow("powermenu");
-              Hyprland.message("dispatch exec hyprlock");
+              execAsync("loginctl lock-session");
             },
             child: Widget.Icon({
               class_name: "powermenuIcon",
