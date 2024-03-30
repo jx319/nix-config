@@ -39,12 +39,13 @@
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
     nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
+      laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; }; 
-	      modules = let nixosConfiguration = "nixos"; in [
+	      modules = let nixosConfiguration = "laptop"; in [
           
-          ./host/nixos/configuration.nix
+          ./host/laptop/configuration.nix
+          ./nixos/laptop.nix
           home-manager.nixosModules.home-manager
           {
             home-manager = {
