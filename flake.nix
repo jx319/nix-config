@@ -35,6 +35,11 @@
     nwg-displays.url = "github:nwg-piotr/nwg-displays";
 
     helix.url = "github:helix-editor/helix";
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {
