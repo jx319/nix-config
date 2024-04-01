@@ -62,7 +62,7 @@
   
   users.users.jonas = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "libvirtd" "video" "plugdev" ];
+    extraGroups = [ "input" "libvirtd" "networkmanager" "plugdev" "video" "wheel" ];
     shell = pkgs.zsh;
   };
   
