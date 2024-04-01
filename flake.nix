@@ -40,6 +40,11 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    autoclicker = {
+      url = "github:konkitoman/autoclicker?rev=063ae7c942a9ee2f1f9684e387a850535eb65e31";
+      flake = false;
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }@inputs: {

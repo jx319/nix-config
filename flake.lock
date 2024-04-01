@@ -75,6 +75,23 @@
         "type": "github"
       }
     },
+    "autoclicker": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710017182,
+        "narHash": "sha256-BgkhytgNePEWhx6oQnV5xTu/Ryfz5LPIbOG0iLlaP8s=",
+        "owner": "konkitoman",
+        "repo": "autoclicker",
+        "rev": "063ae7c942a9ee2f1f9684e387a850535eb65e31",
+        "type": "github"
+      },
+      "original": {
+        "owner": "konkitoman",
+        "repo": "autoclicker",
+        "rev": "063ae7c942a9ee2f1f9684e387a850535eb65e31",
+        "type": "github"
+      }
+    },
     "catppuccin-vsc": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -962,6 +979,7 @@
         "ags": "ags",
         "alacritty-theme": "alacritty-theme",
         "anyrun": "anyrun",
+        "autoclicker": "autoclicker",
         "catppuccin-vsc": "catppuccin-vsc",
         "helix": "helix",
         "home-manager": "home-manager",
