@@ -1,6 +1,12 @@
 { ... }:
 {
   nix = {
+    gc = {
+      automatic = true;
+      persistent = false;
+      dates = "weekly";
+    };
+
     settings = {
       builders-use-substitutes = true;
       experimental-features = [ "nix-command" "flakes" ];
