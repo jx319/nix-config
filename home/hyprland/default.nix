@@ -57,7 +57,6 @@
 			# daemons
 			exec-once = 
 			[
-				"hyprctl setcursor Catppuccin-Mocha-Green-Cursors 32"
 				# "${pkgs.swaybg}/bin/swaybg -i ${./nix-black-4k.png}"
 				"${inputs.ags.packages.${pkgs.system}.ags}/bin/ags"
 				"${swww} init"
@@ -68,6 +67,7 @@
 			];
 
 			env = [
+				"XCURSOR_THEME,Catppuccin-Mocha-Green-Cursors"
 				"XCURSOR_SIZE,32"
 				"QT_QPA_PLATFORMTHEME,qt5ct"
 			];
