@@ -37,12 +37,15 @@
   	enable = true;
 		package = inputs.hyprland.packages.${pkgs.system}.hyprland;
 
-		plugins = [ ];
+		plugins = [
+			inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+		];
 
 		settings = {
 			# catppuccin colors
 			"$green" = "0xffa6e3a1";
 			"$surface1" = "0xff45475a";
+			"$crust" 		= "0xff11111b";
 			
 			source = [
 				# nwg-displays
@@ -231,10 +234,16 @@
 				# Scroll through existing workspaces with mainMod + scroll
 				"$mainMod, mouse_down, workspace, e+1"
 				"$mainMod, mouse_up, workspace, e-1"
+
+				"$mainMod, TAB, hyprexpo:expo, toggle"
 			];
 
 			bindr = [
 				"SUPER, SUPER_L, exec, ${inputs.anyrun.packages.${pkgs.system}.default}/bin/anyrun"
+			];
+
+			bindnr = [
+				",ESCAPE, hyprexpo:expo, off"
 			];
 
 			bindm = [
@@ -243,7 +252,20 @@
 			];
 		};
 
-		extraConfig = '''';
+		extraConfig = ''
+			plugin {
+	    	hyprexpo {
+	        columns = 3
+	        gap_size = 10
+	        bg_col = $crust
+	        workspace_method = first 1 # [center/first] [workspace] e.g. first 1 or center m+1
+
+	        enable_gesture = true # laptop touchpad, 4 fingers
+	        gesture_distance = 300 # how far is the "max"
+	        gesture_positive = false # positive = swipe down. Negative = swipe up.
+		  	}
+			}
+		'';
 	};
 
 	home.packages = [
