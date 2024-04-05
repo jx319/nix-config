@@ -43,7 +43,8 @@
 
 		settings = {
 			# catppuccin colors
-			"$green" = "0xffa6e3a1";
+			"$green" 		= "0xffa6e3a1";
+			"$red" 			= "0xfff38ba8";
 			"$surface1" = "0xff45475a";
 			"$crust" 		= "0xff11111b";
 			
@@ -157,6 +158,12 @@
 				"float,class:(org.kde.kdeconnect.handler)"
 				"float,class:(pavucontrol)"
 				"float,class:(codium)"
+
+				"float,						class:(polkit-gnome-authentication-agent-1)"
+				"bordercolor $red,class:(polkit-gnome-authentication-agent-1)"
+				"pin,							class:(polkit-gnome-authentication-agent-1)"
+				"stayfocused,			class:(polkit-gnome-authentication-agent-1)"
+				"dimaround,				class:(polkit-gnome-authentication-agent-1)"
 			];
 
 			layerrule = [
