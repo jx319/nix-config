@@ -118,22 +118,7 @@
       users = [ "jonas" ];
     };
     
-  };
-  
-  systemd.user.services.polkit-gnome = {
-    description = "polkit-gnome";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
-  
+  };  
   
   fonts.packages = with pkgs; [
   	(nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
