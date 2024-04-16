@@ -24,7 +24,6 @@ in
               content = {
                 type = "swap";
                 randomEncryption = true;
-                priority = 1;
               };
             };
             zfs = {

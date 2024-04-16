@@ -7,7 +7,6 @@
     };
     autoSnapshot = {
       enable = true;
-      interval = "daily";
     };
     trim = {
       enable = true;
