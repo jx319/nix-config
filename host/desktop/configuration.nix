@@ -132,7 +132,6 @@
       enable = true;
       users = [ "jonas" ];
     };
-    
   };  
   
   fonts.packages = with pkgs; [

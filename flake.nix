@@ -86,16 +86,12 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.jonas = import [
-                ./home
-                ./home/impermanence
-              ];
+              users.jonas = import ./home/desktop.nix;
               extraSpecialArgs = { inherit inputs nixosConfiguration; };
             };
           }
         ];
       };
-
     };
   };
 }
