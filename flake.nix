@@ -25,7 +25,7 @@
 
     nixpkgs-anyrun.url = "github:nixos/nixpkgs?rev=3030f185ba6a4bf4f18b87f345f104e6a6961f34";
     anyrun = {
-      url = "github:Kirottu/anyrun";
+      url = "github:Kirottu/anyrun?rev=be6728884d543665e7bd137bbef62dc1d04a210b"; # don't rebuild on minor changes
       inputs.nixpkgs.follows = "nixpkgs-anyrun"; # don't rebuild anyrun every time nixpkgs updates
     };
     
@@ -49,9 +49,12 @@
       url = "github:konkitoman/autoclicker?rev=063ae7c942a9ee2f1f9684e387a850535eb65e31";
       flake = false;
     };
+
+    impermanence.url = "github:nix-community/impermanence";
+    disko.url = "github:nix-community/disko";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, ... }@inputs: {
     nixosConfigurations = {
       laptop = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -60,7 +63,7 @@
           
           ./host/laptop/configuration.nix
           ./nixos/laptop.nix
-          home-manager.nixosModules.home-manager
+          inputs.home-manager.nixosModules.home-manager
           {
             home-manager = {
               useGlobalPkgs = true;
@@ -71,6 +74,28 @@
           }
         ];
       };
+      desktop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; }; 
+	      modules = let nixosConfiguration = "desktop"; in [
+          
+          ./host/desktop/configuration.nix
+          ./nixos/desktop.nix
+          inputs.home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.jonas = import [
+                ./home
+                ./home/impermanence
+              ];
+              extraSpecialArgs = { inherit inputs nixosConfiguration; };
+            };
+          }
+        ];
+      };
+
     };
   };
 }
