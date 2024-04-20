@@ -1,4 +1,4 @@
-{ config, inputs, lib, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 
 {
   imports =
@@ -12,9 +12,6 @@
     initrd = {
       kernelModules = [ "zfs" ];
       supportedFilesystems = [ "zfs" ];
-      postDeviceCommands = lib.mkAfter ''
-        zfs rollback -r zroot/root@blank
-      '';
     };
     loader = {
       systemd-boot = {
@@ -28,13 +25,12 @@
       "nohibernate"
     ];
     supportedFilesystems = [ "zfs" ];
-    zfs = {
-      enabled = true;
-    };
+    zfs = { };
   };
-  
+
   networking = {
   	hostName = "nixos";
+    hostId = "53b51c6f";
   };
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -82,7 +78,6 @@
   users.users.jonas = {
     isNormalUser = true;
     extraGroups = [ "input" "libvirtd" "networkmanager" "plugdev" "video" "wheel" ];
-    hashedPassword = "$y$j9T$AD.qNIIN3zQDnCd8ePuCS.$H7Elgh4JCLOLcXtB/Qx0Fu2fHemn4q.t6u4kDBMG3H1";
     shell = pkgs.zsh;
   };
   

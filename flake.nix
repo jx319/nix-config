@@ -50,7 +50,6 @@
       flake = false;
     };
 
-    impermanence.url = "github:nix-community/impermanence";
     disko.url = "github:nix-community/disko";
   };
 
@@ -86,7 +85,7 @@
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.jonas = import ./home/desktop.nix;
+              users.jonas = import ./home;
               extraSpecialArgs = { inherit inputs nixosConfiguration; };
             };
           }

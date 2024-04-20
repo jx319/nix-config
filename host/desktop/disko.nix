@@ -41,6 +41,7 @@ in
       zroot = {
         type = "zpool";
         rootFsOptions = {
+          canmount = "off";
           compression = "zstd";
           acltype = "posixacl";
           xattr = "sa";
@@ -54,19 +55,16 @@ in
           root = {
             type = "zfs_fs";
             mountpoint = "/";
-            options."com.sun:auto-snapshot" = "false";
-            postCreateHook = ''
-              zfs snapshot zroot/root@blank
-            '';
+            options."com.sun:auto-snapshot" = "true";
           };
           nix = {
             type = "zfs_fs";
             mountpoint = "/nix";
             options."com.sun:auto-snapshot" = "false";
           };
-          persistent = {
+          home = {
             type = "zfs_fs";
-            mountpoint = "/persistent";
+            mountpoint = "/home";
             options."com.sun:auto-snapshot" = "true";
           };
         };

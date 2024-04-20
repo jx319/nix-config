@@ -4,7 +4,6 @@
     ./console
     # ./cosmic
     ./hyprland
-    ./impermanence
     ./libvirtd
     ./networkmanager
     ./nix
